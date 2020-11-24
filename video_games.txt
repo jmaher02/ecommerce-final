@@ -1,12 +1,12 @@
-180241;Call of Duty: Black Ops;59.99;PS4;false
-180231;Call of Duty: Black Ops;37.99;PS4;true
-180341;Call of Duty: Black Ops;59.99;XBox1;false
-180341;Call of Duty: Black Ops;37.99;XBox1;true
-180341;Call of Duty: Black Ops;59.99;PS5;false
-180227;MLB: The Show;19.99;PS4;true
-180217;MLB: The Show;49.99;PS4;false
-180774;Animal Crossing: New Horizons;59.99;Switch;false
-180276;God of War;16.99;PS4;true
-180286;God of War;32.99;PS4;false
-180754;MarioKart 8 Deluxe;45.99;Switch;true
-180764;MarioKart 8 Deluxe;59.99;Switch;false
+180241;Call of Duty: Black Ops;59.99;PS4,false
+180231;Call of Duty: Black Ops;37.99;PS4,true
+180341;Call of Duty: Black Ops;59.99;XBox1,false
+180341;Call of Duty: Black Ops;37.99;XBox1,true
+180341;Call of Duty: Black Ops;59.99;PS5,false
+180227;MLB: The Show;19.99;PS4,true
+180217;MLB: The Show;49.99;PS4,false
+180774;Animal Crossing: New Horizons;59.99;Switch,false
+180276;God of War;16.99;PS4,true
+180286;God of War;32.99;PS4,false
+180754;MarioKart 8 Deluxe;45.99;Switch,true
+180764;MarioKart 8 Deluxe;59.99;Switch,false

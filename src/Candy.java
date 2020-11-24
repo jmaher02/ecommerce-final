@@ -1,6 +1,12 @@
 
 public class Candy extends Product {
 
+	
+	public Candy(int item, String name, double price, String description)
+	{
+		super(item, price, name);
+	}
+	
 	@Override
 	public String displayCharacteristics() {
 		// TODO Auto-generated method stub

@@ -9,18 +9,20 @@
  * 
  */
 
-
+import java.util.Scanner;
 
 public class VideoGame extends Product 
 {
 	private String console;
 	private boolean preOwned;
 	
-	public VideoGame(int item, String name, double price, String con, boolean pre)
+	public VideoGame(int item, String name, double price, String description)
 	{
 		super(item,price,name);
-		console = con;
-		preOwned=pre;		
+		Scanner parse = new Scanner(description);
+		parse.useDelimiter(",");
+		console = parse.next();
+		preOwned = parse.nextBoolean();		
 	}
 
 	@Override
