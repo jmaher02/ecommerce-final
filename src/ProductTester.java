@@ -6,8 +6,6 @@
 
 import java.util.Scanner;
 
-import chapter11_assignments.SagaData;
-
 import java.io.File;
 import java.util.NoSuchElementException;
 import java.io.FileNotFoundException;
@@ -17,6 +15,13 @@ import java.util.ArrayList;
 
 public class ProductTester 
 {
+	public static void printCategory(ArrayList<Product> list)
+	{
+		for(int i = 0; i < list.size(); i++)
+		{
+			System.out.println(list.get(i));
+		}
+	}
 
 	public static void main(String[] args) 
 	{
@@ -40,7 +45,7 @@ public class ProductTester
 	        String dataLine = file.nextLine();
 
 	        Scanner parse = new Scanner(dataLine);
-	        parse.useDelimiter( "," );
+	        parse.useDelimiter( ";" );
 
 	        try
 	        {
@@ -53,7 +58,7 @@ public class ProductTester
 	        }
 	        catch(InputMismatchException input)
 	        {
-	          System.out.println("Error in saga record :" + dataLine + ", data ignored.");
+	          System.out.println("Error in record :" + dataLine + ", data ignored.");
 	        }
 	      }
 
@@ -76,8 +81,11 @@ public class ProductTester
 		allProducts[4] = allElectronics;
 		allProducts[5] = allCamping;
 		
-		System.out.println(allProducts.toString());
-
+		//Print the VideoGames Category
+		System.out.println("VIDEO GAMES");
+		System.out.println("===========");
+		printCategory(allProducts[0]);
+		System.out.println("===========");
 
 	}
 
