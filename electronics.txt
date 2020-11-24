@@ -1,7 +1,7 @@
-445100, Echo Dot Smart Speaker with Alexa, 18.99, 3.9"x3.9"x1.7", 10.6
-445389, Fujifilm Instax Mini 11 Instant Camera, 59.95, 4.24"x4.77"x2.65", 16.2
-445086, Fire HD Kids Edition Tablet 8" display, 79.99, 7.95"x5.42"x0.38", 24
-445213, HSPRO Bluetooth 5.0 Earbuds, 19.99, 3.7"x1.9"x3", 0.1
-445277, VANKYO C750 Bluetooth Over Ear Headphones, 59.99, 7"x8"x3", 8
-445061, Apple iPad 10.2in, 329.00, 10.33"x7.27"x2.02", 17
-445333, VicTsingMM057 Wireless Mouse, 11.99, 4.5"x3.1"x2", 0.3
+445100;Echo Dot Smart Speaker with Alexa;18.99;3.9"x3.9"x1.7";10.6
+445389;Fujifilm Instax Mini 11 Instant Camera;59.95;4.24"x4.77"x2.65";16.2
+445086;Fire HD Kids Edition Tablet 8" display;79.99;7.95"x5.42"x0.38";24
+445213;HSPRO Bluetooth 5.0 Earbuds;19.99;3.7"x1.9"x3";0.1
+445277;VANKYO C750 Bluetooth Over Ear Headphones;59.99;7"x8"x3";8
+445061;Apple iPad 10.2in;329.00;10.33"x7.27"x2.02";17
+445333;VicTsingMM057 Wireless Mouse;11.99;4.5"x3.1"x2";0.3
