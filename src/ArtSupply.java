@@ -11,8 +11,8 @@ public class ArtSupply extends Product
 	
 	@Override
 	public String displayCharacteristics() {
-		// TODO Auto-generated method stub
-		return null;
+		String display = "BRAND: " + brand;
+		return display + "\n";
 	}
 
 	@Override

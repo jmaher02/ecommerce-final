@@ -15,13 +15,17 @@ public class CampingGear extends Product
 	}
 	
 	@Override
-	public String displayCharacteristics() {
-		// TODO Auto-generated method stub
-		return null;
+	public String displayCharacteristics() 
+	{
+		String display = "DIMENSIONS: " + dimensions + "\n";
+		display += "WEIGHT: " + weight + " ounces\n";
+		
+		return display;
 	}
 
 	@Override
-	public String showFeaturedPicture() {
+	public String showFeaturedPicture() 
+	{
 		// TODO Auto-generated method stub
 		return null;
 	}

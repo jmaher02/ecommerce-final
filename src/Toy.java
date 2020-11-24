@@ -19,13 +19,32 @@ public class Toy extends Product
 	}
 	
 	@Override
-	public String displayCharacteristics() {
-		// TODO Auto-generated method stub
-		return null;
+	public String displayCharacteristics() 
+	{
+		String display = "CATEGORY: " + category + "\n";
+		
+		display += "AGE: ";
+		
+		if(minAge == -1 && maxAge == -1)
+			display += "All ages";
+		else {
+			if(minAge == -1)
+				display += "up ";
+			else
+				display += minAge;
+			
+			if(maxAge == -1)
+				display += " and up";
+			else
+				display += " to " + maxAge;
+		}
+		
+		return display + "\n";
 	}
 
 	@Override
-	public String showFeaturedPicture() {
+	public String showFeaturedPicture() 
+	{
 		// TODO Auto-generated method stub
 		return null;
 	}

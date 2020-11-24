@@ -27,9 +27,7 @@ public class VideoGame extends Product
 
 	@Override
 	public String displayCharacteristics() {
-		String display = "\nITEM " + getItemNumber() + " " + getName() + "\t" + printPrice() + "\n";
-		
-		display += "CONSOLE: " + console + "\n";
+		String display = "CONSOLE: " + console + "\n";
 		if(preOwned)
 			display += "PRE-OWNED\n";
 		else
