@@ -52,6 +52,7 @@ public class ProductTester
 		        int itemNum = parse.nextInt();
 		        String name = parse.next();
 		        double price = parse.nextDouble();
+		        System.out.println(price);
 		        String console = parse.next();
 		        boolean preOwn = parse.nextBoolean();
 	        	allVideoGames.add(new VideoGame(itemNum, name, price, console, preOwn));

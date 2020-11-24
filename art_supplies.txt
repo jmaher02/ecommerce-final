@@ -1,0 +1,6 @@
+710256;24ct. Crayola Crayons;1.0;Crayola
+710784;64ct. Crayola Crayons;3.54;Crayola
+710549;10ct. Crayola Washable Markers;3.99;Crayola
+710680;4ct. Black Dry Erase Markers;3.75;Expo
+710684;4ct. Black Dry Erase Markers Skinny;4.29;Expo
+710323;6ct. Multicolor Dry Erase Markers;5.99;Expo

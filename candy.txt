@@ -1,7 +1,7 @@
-703422, Sour Patch Kids 5oz., 3.99, 5
-703418, Sour Patch Kids 16oz., 9.99, 16
-703456, Sour Patch Kids 320z., 17.99, 32
-703219, M&M Milk Chocolate 5oz., 3.49, 5
-703237, M&M Milk Chocolate 16oz., 7.99, 16
-703219, M&M Milk Chocolate 32oz., 14.49, 32
-703759, 100Grand Funsize 225count, 21.35, 35
+703422;Sour Patch Kids 5oz.;3.99;5
+703418;Sour Patch Kids 16oz.;9.99;16
+703456;Sour Patch Kids 320z.;17.99;32
+703219;M&M Milk Chocolate 5oz.;3.49;5
+703237;M&M Milk Chocolate 16oz.;7.99;16
+703219;M&M Milk Chocolate 32oz.;14.49;32
+703759;100Grand Funsize 225count;21.35;35
