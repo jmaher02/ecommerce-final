@@ -41,8 +41,14 @@ public class ECommerceController
 		//Update Label Text Colors
 		productName.setTextFill(Color.web("#689892"));
 		productDetails.setTextFill(Color.web("#8FB4A8"));
+		productID.setTextFill(Color.web("#8FB4A8"));
 
-		
+	}
+	
+	@FXML
+	public void updateCart(ActionEvent event)
+	{
+		System.out.println("Pressed Button");
 	}
 	
 	

@@ -41,25 +41,25 @@
             </VBox>
 
             <!-- Product Details and User Interaction Section -->
-            <VBox spacing="10" alignment="left"
+            <VBox spacing="10" alignment="center"
                 style="-fx-padding:8" >
                 <Label text="Product name" fx:id="productName" 
-                        style="-fx-font-size:20pt;"/>
+                        style="-fx-font-size:16pt;"/>
                 <Label text="0.00" fx:id="productPrice" 
-                        style="-fx-font-size:18pt;"/>
+                        style="-fx-font-size:16pt;-fx-font-weight:bold;"/>
                 
                 <Label text="Quantity" 
-                        style="-fx-font-size:16pt;"/>
+                        style="-fx-font-size:12pt;"/>
                 <TextField fx:id="quantity" maxWidth="70" 
-                        style="-fx-font-size:16pt;"/>
+                        style="-fx-font-size:12pt;"/>
 
                 <Button text="ADD TO CART" fx:id="addToCart"
                         onAction="#updateCart" />
                 
-                <Label text="Item #000000" fx:id="productID" 
-                        style="-fx-font-size:14pt;"/>
                 <Label text="Product details" fx:id="productDetails" 
-                        style="-fx-font-size:14pt;"/>
+                        style="-fx-font-size:12pt;"/>
+                <Label text="Item #000000" fx:id="productID" 
+                        style="-fx-font-size:12pt;"/>
             </VBox>
         </HBox>
     </center>
