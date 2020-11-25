@@ -35,9 +35,10 @@
             <!-- Image Section -->
             <VBox spacing="10" alignment="center"
                 style="-fx-padding:8">
-                <!-- <ImageView fx:id="productImage">
+                <ImageView fx:id="productImage">
+                        
                 </ImageView>
-                -->
+                
             </VBox>
 
             <!-- Product Details and User Interaction Section -->

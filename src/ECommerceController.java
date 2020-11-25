@@ -31,7 +31,7 @@ public class ECommerceController
 	@FXML private TextField quantity;
 	@FXML private Button addToCart;
 	
-	//@FXML private ImageView productImage;
+	@FXML private ImageView productImage;
 	
 	@FXML
 	public void initialize()
@@ -42,7 +42,9 @@ public class ECommerceController
 		productName.setTextFill(Color.web("#689892"));
 		productDetails.setTextFill(Color.web("#8FB4A8"));
 		productID.setTextFill(Color.web("#8FB4A8"));
-
+		
+		productImage.setImage(new Image("images/defaultProduct.png"));
+		
 	}
 	
 	@FXML
