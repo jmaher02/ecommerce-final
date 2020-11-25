@@ -16,15 +16,23 @@
 <BorderPane xmlns:fx="http://javafx.com/fxml" 
       fx:controller="ECommerceController">
     <top>
-        <HBox spacing="10" alignment="center"
+        <HBox spacing="10" alignment="center" fx:id="titlePane"
               style="-fx-background-color:mediumorchid;-fx-padding:8">
 
             <!-- BACK Button in top left -->
-
+            <Button text="BACK" fx:id="backButton"
+                style="-fx-background-color: #B0C485;"
+                onAction="#backToCategory" />
             <!-- STORE TITLE in center -->
-
+            <Label text="Maher Merchandise" fx:id="title"
+                   style="-fx-font-size:20pt;-fx-font-weight:bold;" />
             <!-- ACCOUNT and CART button in top right-->
-
+            <Button text="SIGN IN" fx:id="accountButton"
+                style="-fx-background-color: #B0C485;"
+                onAction="#userSignIn" />
+            <Button text="VIEW CART" fx:id="cartButton"
+                style="-fx-background-color: #B0C485;"
+                onAction="#viewCart" />
 
         </HBox>
     </top>
@@ -36,13 +44,13 @@
             <VBox spacing="10" alignment="center"
                 style="-fx-padding:8">
                 <ImageView fx:id="productImage">
-                        
+
                 </ImageView>
                 
             </VBox>
 
             <!-- Product Details and User Interaction Section -->
-            <VBox spacing="10" alignment="center"
+            <VBox spacing="10" alignment="center_left"
                 style="-fx-padding:8" >
                 <Label text="Product name" fx:id="productName" 
                         style="-fx-font-size:16pt;"/>
@@ -55,6 +63,7 @@
                         style="-fx-font-size:12pt;"/>
 
                 <Button text="ADD TO CART" fx:id="addToCart"
+                        style="-fx-background-color: #B0C485;"
                         onAction="#updateCart" />
                 
                 <Label text="Product details" fx:id="productDetails" 
