@@ -117,4 +117,40 @@ public class Catalog
 			System.out.println(allProducts[category].get(i).displayCharacteristics());
 		}
 	}
+	
+	//Access all the different Titles for all the Categories
+	public String[] getCategoryTitles()
+	{
+		return categoryTitles;
+	}
+	
+	//Get the index for the given Category title. 
+	// If the category does not exist, return -1
+	public int getCategory(String title)
+	{
+		for(int i = 0; i < categoryTitles.length; i++)
+		{
+			if(categoryTitles[i].equals(title))
+				return i;
+		}
+		return -1;
+	}
+	
+	//Search the catalog for a specific Product using the itemNumber
+	public Product findProduct(int category, int itemNumber)
+	{
+		for(Product product: allProducts[category])
+		{
+			if(product.getItemNumber() == itemNumber)
+				return product;
+		}
+		
+		return null;
+	}
+	
+	//Return all the products in a given category
+	public ArrayList<Product> getCategoryProducts( int category )
+	{
+		return allProducts[category];
+	}
 }
