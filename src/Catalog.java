@@ -26,6 +26,7 @@ public class Catalog
 	private ArrayList<Product>[] allProducts;
 	private String[] categoryTitles= {"Art Supplies", "Camping Gear", "Candy", "Electronics", "Toys", "Video Games"};
 	private String[] files = {"art_supplies.txt", "camping_gear.txt", "candy.txt", "electronics.txt", "toys.txt", "video_games.txt"};
+	private String[] images = {"art.png", "camping.png","candy.png", "wire.png","toy.png","controller.png"};
 	
 	public Catalog()
 	{
@@ -152,5 +153,11 @@ public class Catalog
 	public ArrayList<Product> getCategoryProducts( int category )
 	{
 		return allProducts[category];
+	}
+	
+	//Return the image name for the given category
+	public String getImageTitle(int category)
+	{
+		return images[category];
 	}
 }

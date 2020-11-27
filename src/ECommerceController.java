@@ -1,19 +1,14 @@
-/** Controller class to manage scenes and user interaction
+/** Controller class to manage the Product page
  * 
  * @author Jillian Maher
  */
 
-import java.net.URL;
-import javafx.animation.*;
 import javafx.event.*;
 import javafx.fxml.*;
-import javafx.scene.canvas.*;
 import javafx.scene.control.*;
 import javafx.scene.image.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.util.Duration;
 
 public class ECommerceController 
 {
@@ -22,8 +17,6 @@ public class ECommerceController
 	
 	//Models
 	private Catalog catalog;
-	
-	@FXML private HBox titlePane;
 	
 	//Nodes
 	@FXML private Label title;
@@ -79,17 +72,18 @@ public class ECommerceController
 	}
 	
 	@FXML
-	public void updateCart(ActionEvent event)
-	{		
-		System.out.println("Pressed Button");
-	}
-	
-	@FXML
 	public void viewCart( ActionEvent event )
 	{
 		System.out.println("View Cart");
 	}
-	
+
+	@FXML
+	public void updateCart(ActionEvent event)
+	{		
+		System.out.println("Pressed Button");
+	}
+
+	//Create transitions for hovering on and off a button
 	public void setButtonHover( Button button )
 	{
 		button.setOnMouseEntered(e -> button.setStyle(HOVERED_BUTTON_STYLE));
