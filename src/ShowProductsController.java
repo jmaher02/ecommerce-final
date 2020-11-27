@@ -8,7 +8,13 @@ import javafx.fxml.*;
 import javafx.scene.control.*;
 import javafx.scene.image.*;
 import javafx.scene.layout.*;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class ShowProductsController 
@@ -163,9 +169,15 @@ public class ShowProductsController
 	}
 
 	@FXML
-	public void backToCategory( ActionEvent event)
+	public void backToCategory( ActionEvent event) throws IOException
 	{
-		System.out.println("GO BACK");
+		Parent categoryScreen = FXMLLoader.load(getClass().getResource("fxml_category_page.fxml"));
+		Scene categoryScene = new Scene(categoryScreen);
+		
+		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+		
+		window.setScene(categoryScene);
+		window.show();
 	}
 	
 	@FXML void userSignIn( ActionEvent event)

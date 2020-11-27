@@ -3,12 +3,18 @@
  * @author Jillian Maher
  */
 
+import java.io.IOException;
+
 import javafx.event.*;
 import javafx.fxml.*;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 
 public class CategoryController 
 {
@@ -54,7 +60,7 @@ public class CategoryController
 		setButtonHover(cartButton);
 	}
 	
-	@FXML void viewProducts( ActionEvent event )
+	@FXML void viewProducts( ActionEvent event ) throws IOException
 	{
 		if(event.getSource() == artCategory)
 		{
@@ -84,6 +90,14 @@ public class CategoryController
 		{
 			System.out.println("Not a category");
 		}
+		
+		Parent categoryScreen = FXMLLoader.load(getClass().getResource("fxml_select_product.fxml"));
+		Scene categoryScene = new Scene(categoryScreen);
+		
+		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+		
+		window.setScene(categoryScene);
+		window.show();
 	}
 	
 	//Create transitions for hovering on and off a button
