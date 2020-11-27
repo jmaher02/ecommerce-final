@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<!-- COLOR PALETTE -->
+<!--
+    Purple == mediumorchid ==   #BA55D3 ==  rgb(186,85,211)
+    White  == floralwhite  ==   #FFFAEE ==  rgb(255,250,238)
+    Teal1  == cadetgrey    ==   #689892 ==  rgb(104,152,146)
+    Teal2  == desaturatedcyan ==#8FB4A8 ==  rgb(143,180,168)
+    Sage2  == dirtywhite   ==   #EBEFCC ==  rgb(235,239,204)
+    Sage1  == sage         ==   #B0C485 ==  rgb(176,196,133)
+-->
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" 
+      fx:controller="ShowProductsController">
+    <top>
+        <HBox spacing="10" alignment="center" fx:id="titlePane"
+              style="-fx-background-color:mediumorchid;-fx-padding:8">
+
+            <!-- BACK Button in top left -->
+            <Button text="BACK" fx:id="backButton"
+                style="-fx-background-color: #B0C485;"
+                onAction="#backToCategory" />
+            <!-- STORE TITLE in center -->
+            <Label text="Maher Merchandise" fx:id="title"
+                   style="-fx-font-size:20pt;-fx-font-weight:bold;" />
+            <!-- ACCOUNT and CART button in top right-->
+            <Button text="SIGN IN" fx:id="accountButton"
+                style="-fx-background-color: #B0C485;"
+                onAction="#userSignIn" />
+            <Button text="VIEW CART" fx:id="cartButton"
+                style="-fx-background-color: #B0C485;"
+                onAction="#viewCart" />
+
+        </HBox>
+    </top>
+    <center>
+        <!-- Split screen with three products on top and three on bottom -->
+        <VBox spacing="10" alignment="center"
+              style="-fx-background-color:floralwhite;-fx-padding:20">
+            <!-- Category Title -->
+            <Label text="Category Title" fx:id="categoryTitle"
+                    style="-fx-font-size:16pt;-fx-font-weight:bold;" />
+            <!-- Top Row -->
+            <HBox spacing="10" alignment="center"
+                    style="-fx-padding:20;">
+                <Button text="Item 1" fx:id="itemOneButton"
+                    style="-fx-background-color: #689892;"
+                    onAction="#viewProduct" /> 
+                <Button text="Item 2" fx:id="itemTwoButton"
+                    style="-fx-background-color: #689892;"
+                    onAction="#viewProduct" /> 
+                <Button text="Item 3" fx:id="itemThreeButton"
+                    style="-fx-background-color: #689892;"
+                    onAction="#viewProduct" /> 
+            </HBox>
+            <!-- Bottom Row -->
+            <HBox spacing="10" alignment="center"
+              style="-fx-padding:20;">
+                <Button text="Item 4" fx:id="itemFourButton"
+                    style="-fx-background-color: #689892;"
+                    onAction="#viewProduct" />
+                <Button text="Item 5" fx:id="itemFiveButton"
+                    style="-fx-background-color: #689892;"
+                    onAction="#viewProduct" />
+                <Button text="Item 6" fx:id="itemSixButton"
+                    style="-fx-background-color: #689892;"
+                    onAction="#viewProduct" />
+            </HBox>
+        </VBox>
+    </center>
+    <right>
+        <!-- See more prouducts button-->
+        <VBox spacing="10" alignment="center"
+                style="-fx-background-color:floralwhite;-fx-padding:20;">
+            
+            <Button text="MORE -->" fx:id="moreButton"
+                style="-fx-background-color: #689892;" 
+                onAction="#showMoreProducts" />
+        </VBox>
+    </right>
+</BorderPane>

@@ -37,6 +37,9 @@ public class CategoryController
 	{
 		catalog = new Catalog();
 		
+		//Update Label Text Colors
+		title.setTextFill(Color.web("FFFAEE"));
+		
 		Button[] categories = {artCategory, campCategory, candyCategory, elecCategory, toyCategory, gameCategory};
 		//Set category images on buttons
 		for(int i = 0; i < 6; i++)
@@ -99,7 +102,7 @@ public class CategoryController
 	}
 
 	@FXML
-	public void backToCategory( ActionEvent event)
+	public void backToHomepage( ActionEvent event)
 	{
 		System.out.println("GO BACK");
 	}

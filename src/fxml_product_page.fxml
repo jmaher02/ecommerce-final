@@ -14,7 +14,7 @@
 -->
 
 <BorderPane xmlns:fx="http://javafx.com/fxml" 
-      fx:controller="ECommerceController">
+      fx:controller="ProductController">
     <top>
         <HBox spacing="10" alignment="center" fx:id="titlePane"
               style="-fx-background-color:mediumorchid;-fx-padding:8">
@@ -22,7 +22,7 @@
             <!-- BACK Button in top left -->
             <Button text="BACK" fx:id="backButton"
                 style="-fx-background-color: #B0C485;"
-                onAction="#backToCategory" />
+                onAction="#backToAllProducts" />
             <!-- STORE TITLE in center -->
             <Label text="Maher Merchandise" fx:id="title"
                    style="-fx-font-size:20pt;-fx-font-weight:bold;" />
