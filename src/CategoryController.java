@@ -4,7 +4,6 @@
  */
 
 import java.io.IOException;
-
 import javafx.event.*;
 import javafx.fxml.*;
 import javafx.scene.Node;
@@ -42,6 +41,7 @@ public class CategoryController
 		//Update Label Text Colors
 		title.setTextFill(ECommerceLaunch.MAIN_LIGHT);
 		categoryTitle.setTextFill(ECommerceLaunch.ACCENT_1_DARK);
+		categoryTitle.setMinWidth(400.0);
 		
 		Button[] categories = {artCategory, campCategory, candyCategory, elecCategory, toyCategory, gameCategory};
 		//Set category images on buttons
@@ -128,8 +128,20 @@ public class CategoryController
 	}
 	
 	@FXML
-	public void viewCart( ActionEvent event )
+	public void viewCart( ActionEvent event ) throws IOException
 	{
-		System.out.println("View Cart");
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("fxml_cart_page.fxml"));
+		Parent cartScreen = loader.load();
+		Scene cartScene = new Scene(cartScreen, ECommerceLaunch.WIDTH, ECommerceLaunch.HEIGHT);
+		
+		//Pass existing cart data
+//		CartController control = loader.getController();
+//		control.initializeTable( /*get cart list*/ null);
+		
+		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+		
+		window.setScene(cartScene);
+		window.show();
 	}
 }

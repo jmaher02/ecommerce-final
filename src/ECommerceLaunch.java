@@ -47,7 +47,7 @@ public class ECommerceLaunch extends Application
 	    {
 	      URL url = getClass( ).getResource( "fxml_category_page.fxml" );
 	      BorderPane root = FXMLLoader.load( url );
-	      Scene scene = new Scene( root, 800, 600 );
+	      Scene scene = new Scene( root, WIDTH, HEIGHT );
 	      stage.setTitle( "Maher Merchandise" );
 	      stage.setScene( scene ); 
 	      stage.show( );

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<!-- COLOR PALETTE -->
+<!--
+    Purple == mediumorchid ==   #BA55D3 ==  rgb(186,85,211)
+    White  == floralwhite  ==   #FFFAEE ==  rgb(255,250,238)
+    Teal1  == desaturatedcyan ==#689892 ==  rgb(104,152,146)
+    Teal2  == cadetgrey    ==   #8FB4A8 ==  rgb(143,180,168)
+    Sage2  == dirtywhite   ==   #EBEFCC ==  rgb(235,239,204)
+    Sage1  == sage         ==   #B0C485 ==  rgb(176,196,133)
+-->
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" 
+      fx:controller="CartController">
+    <top>
+        <HBox spacing="10" alignment="center" fx:id="titlePane"
+              style="-fx-background-color:mediumorchid;-fx-padding:8">
+
+            <!-- BACK Button in top left -->
+            <Button text="HOME" fx:id="backButton"
+                style="-fx-background-color: #B0C485;"
+                onAction="#backToHome" />
+            <!-- STORE TITLE in center -->
+            <Label text="Maher Merchandise" fx:id="title"
+                   style="-fx-font-size:20pt;-fx-font-weight:bold;" />
+            <!-- ACCOUNT and CART button in top right-->
+            <Button text="SIGN IN" fx:id="accountButton"
+                style="-fx-background-color: #B0C485;"
+                onAction="#userSignIn" />
+            <Button text="VIEW CART" fx:id="cartButton"
+                style="-fx-background-color: #B0C485;"
+                onAction="#viewCart" />
+
+        </HBox>
+    </top>
+    <center>
+        <VBox spacing="10" alignment="center"
+            style="-fx-background-color: #FFFAEE;-fx-padding:25;" >
+            <!-- Page Title -->
+            <Label text="Customer Cart" fx:id="cartTitle"
+                style="-fx-font-size:16pt;-fx-font-weight:bold;"/>
+            <!-- Table Title -->
+            <TableView fx:id="cartTable" prefHeight="400.0" prefWidth="400.0" >
+            <columns>
+                <TableColumn prefWidth="300.0" text="Product" fx:id="productName"  />
+                <TableColumn prefWidth="148.0" text="Price" fx:id="productPrice"  />
+                <TableColumn prefWidth="148.0" text="Quantity" fx:id="productQty"  />
+            </columns>
+            </TableView>
+        </VBox>
+    </center>
+</BorderPane>

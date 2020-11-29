@@ -27,6 +27,11 @@ public class Cart
 		products.clear();
 	}
 	
+	public ArrayList<Product> getProducts()
+	{
+		return products;
+	}
+	
 	public double calculateTotal()
 	{
 		double total = 0.0;

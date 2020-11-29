@@ -78,9 +78,21 @@ public class ProductController
 	}
 	
 	@FXML
-	public void viewCart( ActionEvent event )
+	public void viewCart( ActionEvent event ) throws IOException
 	{
-		System.out.println("View Cart");
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("fxml_cart_page.fxml"));
+		Parent cartScreen = loader.load();
+		Scene cartScene = new Scene(cartScreen, ECommerceLaunch.WIDTH, ECommerceLaunch.HEIGHT);
+		
+		//Pass existing cart data
+//		CartController control = loader.getController();
+//		control.initializeTable( /*get cart list*/ null);
+		
+		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+		
+		window.setScene(cartScene);
+		window.show();
 	}
 
 	@FXML
