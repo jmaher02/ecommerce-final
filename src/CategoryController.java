@@ -62,42 +62,54 @@ public class CategoryController
 	
 	@FXML void viewProducts( ActionEvent event ) throws IOException
 	{
+		int category = -1;
 		if(event.getSource() == artCategory)
 		{
-			System.out.println("Retrieve art products");
+			category = 0;
 		}
 		else if(event.getSource() == campCategory)
 		{
-			System.out.println("Retrieve camping products");
+			category = 1;
 		}
 		else if(event.getSource() == candyCategory)
 		{
-			System.out.println("Retrieve candy products");
+			category = 2;
 		}
 		else if(event.getSource() == elecCategory)
 		{
-			System.out.println("Retrieve electronic products");
+			category = 3;
 		}
 		else if(event.getSource() == toyCategory)
 		{
-			System.out.println("Retrieve toy products");
+			category = 4;
 		}
 		else if(event.getSource() == gameCategory)
 		{
-			System.out.println("Retrieve game products");
+			category = 5;
 		}
 		else
 		{
-			System.out.println("Not a category");
+			category = -1;
 		}
 		
-		Parent categoryScreen = FXMLLoader.load(getClass().getResource("fxml_select_product.fxml"));
-		Scene categoryScene = new Scene(categoryScreen);
-		
-		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-		
-		window.setScene(categoryScene);
-		window.show();
+		if(category != -1)
+		{
+			System.out.println(category + "Title: " + catalog.getCategoryTitles()[category]);
+			
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(getClass().getResource("fxml_select_product.fxml"));
+			Parent categoryScreen = loader.load();
+			Scene categoryScene = new Scene(categoryScreen, 800, 600);
+			
+			ShowProductsController control = loader.getController();
+			System.out.println( control );
+			control.initCategory(catalog, category);
+			
+			Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+			
+			window.setScene(categoryScene);
+			window.show();
+		}
 	}
 	
 	//Create transitions for hovering on and off a button

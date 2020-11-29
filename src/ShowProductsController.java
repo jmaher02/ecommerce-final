@@ -51,24 +51,19 @@ public class ShowProductsController
 	
 	@FXML
 	public void initialize()
-	{
-		catalog = new Catalog();
-		
-		//TESTING All Categories
-		category = 1;
-		items = catalog.getCategoryProducts(category);
+	{		
+		//init method not working
+		if(catalog == null)
+		{
+			catalog = new Catalog();
+			category = 5;
+			items = catalog.getCategoryProducts(category);
+		}
 		
 		//Update Label Text Colors
 		title.setTextFill(Color.web("#FFFAEE"));
-		categoryTitle.setText(catalog.getCategoryTitles()[category]);
 		categoryTitle.setTextFill(Color.web("#689892"));
 		
-		Button[] buttons = {itemOneButton, itemTwoButton, itemThreeButton, itemFourButton, itemFiveButton, itemSixButton};
-		productButtons = buttons;
-		productpage = 0;
-		
-		//Set product text on buttons
-		setProductText();
 		
 		//Create hover style
 		setButtonHover(moreButton, 1);
@@ -77,35 +72,72 @@ public class ShowProductsController
 		setButtonHover(cartButton, 0);
 	}
 	
-	@FXML void viewProduct( ActionEvent event )
+	//Initialize the category in order to show items
+	public void initCategory(Catalog showCatalog, int showCategory)
 	{
+		catalog = showCatalog;
+		
+		//Set the category of items to grab from the catalog
+		category = showCategory;
+		items = catalog.getCategoryProducts(category);
+
+
+		categoryTitle.setText(catalog.getCategoryTitles()[category]);
+
+		Button[] buttons = {itemOneButton, itemTwoButton, itemThreeButton, itemFourButton, itemFiveButton, itemSixButton};
+		productButtons = buttons;
+		productpage = 0;
+		//Set product text on buttons
+		setProductText();
+	}
+	
+	@FXML void viewProduct( ActionEvent event ) throws IOException
+	{
+		int item = productpage;
 		if(event.getSource() == itemOneButton)
 		{
-			System.out.println("Change page for product 1");
+			item+=0;
 		}
 		else if(event.getSource() == itemTwoButton)
 		{
-			System.out.println("Change page for product 2");
+			item+=1;
 		}
 		else if(event.getSource() == itemThreeButton)
 		{
-			System.out.println("Change page for product 3");
+			item+=2;
 		}
 		else if(event.getSource() == itemFourButton)
 		{
-			System.out.println("Change page for product 4");
+			item+=3;
 		}
 		else if(event.getSource() == itemFiveButton)
 		{
-			System.out.println("Change page for product 5");
+			item+=4;
 		}
 		else if(event.getSource() == itemSixButton)
 		{
-			System.out.println("Change page for product 6");
+			item+=5;
 		}
 		else
 		{
-			System.out.println("Not a category");
+			item=-1;
+		}
+		
+		if(item >= 0 && item < items.size())
+		{
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(getClass().getResource("fxml_product_page.fxml"));
+			Parent categoryScreen = loader.load();
+			Scene categoryScene = new Scene(categoryScreen, 800, 600);
+			
+			//Pass Product data to controller
+			ProductController control = loader.getController();
+			control.setProduct(catalog, items.get(item), category);
+			
+			Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+			
+			window.setScene(categoryScene);
+			window.show();
 		}
 	}
 	
@@ -171,8 +203,10 @@ public class ShowProductsController
 	@FXML
 	public void backToCategory( ActionEvent event) throws IOException
 	{
-		Parent categoryScreen = FXMLLoader.load(getClass().getResource("fxml_category_page.fxml"));
-		Scene categoryScene = new Scene(categoryScreen);
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("fxml_category_page.fxml"));
+		Parent categoryScreen = loader.load();
+		Scene categoryScene = new Scene(categoryScreen, 800, 600);
 		
 		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
 		

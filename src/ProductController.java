@@ -3,12 +3,18 @@
  * @author Jillian Maher
  */
 
+import java.io.IOException;
+
 import javafx.event.*;
 import javafx.fxml.*;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 
 public class ProductController 
 {
@@ -17,6 +23,8 @@ public class ProductController
 	
 	//Models
 	private Catalog catalog;
+	private Product product;
+	private int category;
 	
 	//Nodes
 	@FXML private Label title;
@@ -34,15 +42,12 @@ public class ProductController
     private static final String IDLE_BUTTON_STYLE = "-fx-background-color: #B0C485";
     private static final String HOVERED_BUTTON_STYLE = "-fx-background-color: #EBEFCC;";
 
-    //----FOR TESTING PRODUCTS  ---//
-    private int index = 0;
-	
-	@FXML private ImageView productImage;
+    @FXML private ImageView productImage;
 	
 	@FXML
 	public void initialize()
 	{
-		catalog = new Catalog();
+		//catalog = new Catalog();
 		
 		//Update Label Text Colors
 		title.setTextFill(Color.web("FFFAEE"));
@@ -50,9 +55,6 @@ public class ProductController
 		productDetails.setTextFill(Color.web("#8FB4A8"));
 		productID.setTextFill(Color.web("#8FB4A8"));
 				
-		//Set default image
-		productImage.setImage(new Image("images/defaultProduct.png"));
-		
 		//Create hover style
 		setButtonHover(backButton);
 		setButtonHover(accountButton);
@@ -61,9 +63,21 @@ public class ProductController
 	}
 	
 	@FXML
-	public void backToAllProducts( ActionEvent event)
+	public void backToAllProducts( ActionEvent event) throws IOException
 	{
-		System.out.println("GO BACK");
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("fxml_select_product.fxml"));
+		Parent categoryScreen = loader.load();
+		Scene categoryScene = new Scene(categoryScreen, 800, 600);
+		
+		//Pass Catalog data back to controller
+		ShowProductsController control = loader.getController();
+		control.initCategory(catalog, category);
+		
+		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+		
+		window.setScene(categoryScene);
+		window.show();
 	}
 	
 	@FXML void userSignIn( ActionEvent event)
@@ -90,15 +104,20 @@ public class ProductController
         button.setOnMouseExited(e -> button.setStyle(IDLE_BUTTON_STYLE));
 	}
 	
-	public void setProductScreen(Product product)
+	//Initialize the product to be displayed
+	public void setProduct(Catalog saveCatalog, Product initProduct, int saveCategory)
 	{
-		//Testing adding product details
+		catalog = saveCatalog;
+		product = initProduct;
+		category = saveCategory;
+		
 		productName.setText(product.getName());
 		productPrice.setText(product.printPrice());
 		productID.setText(product.getItemNumber() + "");
 		productDetails.setText(product.displayCharacteristics());
-		index++;
 		
+		//Set default image
+		productImage.setImage(new Image("images/defaultProduct.png"));
 	}
 	
 }
