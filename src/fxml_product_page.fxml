@@ -57,13 +57,15 @@
                 <Label text="0.00" fx:id="productPrice" 
                         style="-fx-font-size:16pt;-fx-font-weight:bold;"/>
                 
-                <Label text="Quantity" 
-                        style="-fx-font-size:12pt;"/>
-                <TextField fx:id="quantity" maxWidth="70" 
-                        style="-fx-font-size:12pt;"/>
+                <HBox alignment="center_left" spacing="10">
+                    <Label text="Quantity" 
+                            style="-fx-font-size:12pt;"/>
+                    <TextField fx:id="quantity" maxWidth="70" 
+                            style="-fx-font-size:12pt;"/>
+                </HBox>
 
                 <Button text="ADD TO CART" fx:id="addToCart"
-                        style="-fx-background-color: #B0C485;"
+                        style="-fx-background-color: #689892;"
                         onAction="#updateCart" />
                 
                 <Label text="Product details" fx:id="productDetails" 

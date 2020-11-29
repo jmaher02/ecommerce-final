@@ -12,15 +12,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.*;
-import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class ProductController 
 {
-	public static final int WIDTH = 600;
-	public static final int HEIGHT = 600;
-	
 	//Models
 	private Catalog catalog;
 	private Product product;
@@ -38,10 +33,7 @@ public class ProductController
 	@FXML private Button backButton;
 	@FXML private Button accountButton;
 	@FXML private Button cartButton;
-	//Button styling
-    private static final String IDLE_BUTTON_STYLE = "-fx-background-color: #B0C485";
-    private static final String HOVERED_BUTTON_STYLE = "-fx-background-color: #EBEFCC;";
-
+	
     @FXML private ImageView productImage;
 	
 	@FXML
@@ -50,16 +42,16 @@ public class ProductController
 		//catalog = new Catalog();
 		
 		//Update Label Text Colors
-		title.setTextFill(Color.web("FFFAEE"));
-		productName.setTextFill(Color.web("#689892"));
-		productDetails.setTextFill(Color.web("#8FB4A8"));
-		productID.setTextFill(Color.web("#8FB4A8"));
+		title.setTextFill(ECommerceLaunch.MAIN_LIGHT);
+		productName.setTextFill(ECommerceLaunch.ACCENT_1_DARK);
+		productDetails.setTextFill(ECommerceLaunch.ACCENT_1_LIGHT);
+		productID.setTextFill(ECommerceLaunch.ACCENT_1_LIGHT);
 				
 		//Create hover style
-		setButtonHover(backButton);
-		setButtonHover(accountButton);
-		setButtonHover(addToCart);
-		setButtonHover(cartButton);
+		ECommerceLaunch.setButtonHover(backButton, 0);
+		ECommerceLaunch.setButtonHover(accountButton, 0);
+		ECommerceLaunch.setButtonHover(addToCart, 1);
+		ECommerceLaunch.setButtonHover(cartButton, 0);
 	}
 	
 	@FXML
@@ -67,8 +59,8 @@ public class ProductController
 	{
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("fxml_select_product.fxml"));
-		Parent categoryScreen = loader.load();
-		Scene categoryScene = new Scene(categoryScreen, 800, 600);
+		Parent productsScreen = loader.load();
+		Scene productsScene = new Scene(productsScreen, ECommerceLaunch.WIDTH, ECommerceLaunch.HEIGHT);
 		
 		//Pass Catalog data back to controller
 		ShowProductsController control = loader.getController();
@@ -76,7 +68,7 @@ public class ProductController
 		
 		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
 		
-		window.setScene(categoryScene);
+		window.setScene(productsScene);
 		window.show();
 	}
 	
@@ -96,13 +88,6 @@ public class ProductController
 	{		
 		System.out.println("Pressed Button");
 	}
-
-	//Create transitions for hovering on and off a button
-	public void setButtonHover( Button button )
-	{
-		button.setOnMouseEntered(e -> button.setStyle(HOVERED_BUTTON_STYLE));
-        button.setOnMouseExited(e -> button.setStyle(IDLE_BUTTON_STYLE));
-	}
 	
 	//Initialize the product to be displayed
 	public void setProduct(Catalog saveCatalog, Product initProduct, int saveCategory)
@@ -113,7 +98,7 @@ public class ProductController
 		
 		productName.setText(product.getName());
 		productPrice.setText(product.printPrice());
-		productID.setText(product.getItemNumber() + "");
+		productID.setText("Item #" + product.getItemNumber());
 		productDetails.setText(product.displayCharacteristics());
 		
 		//Set default image

@@ -7,13 +7,10 @@ import javafx.event.*;
 import javafx.fxml.*;
 import javafx.scene.control.*;
 import javafx.scene.image.*;
-import javafx.scene.layout.*;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -32,12 +29,7 @@ public class ShowProductsController
 	@FXML private Button backButton;
 	@FXML private Button accountButton;
 	@FXML private Button cartButton;
-	//Button styling Sage
-    private static final String IDLE_BUTTON_STYLE = "-fx-background-color: #B0C485";
-    private static final String HOVERED_BUTTON_STYLE = "-fx-background-color: #EBEFCC;";
-    //Button styling Teal
-    private static final String IDLE_BUTTON_TEAL = "-fx-background-color: #689892";
-    private static final String HOVERED_BUTTON_TEAL = "-fx-background-color: #8FB4A8;";
+	
 
 	@FXML private Button itemOneButton;
 	@FXML private Button itemTwoButton;
@@ -52,24 +44,23 @@ public class ShowProductsController
 	@FXML
 	public void initialize()
 	{		
-		//init method not working
-		if(catalog == null)
-		{
-			catalog = new Catalog();
-			category = 5;
-			items = catalog.getCategoryProducts(category);
-		}
+//		//init method not working
+//		if(catalog == null)
+//		{
+//			catalog = new Catalog();
+//			category = 5;
+//			items = catalog.getCategoryProducts(category);
+//		}
 		
 		//Update Label Text Colors
-		title.setTextFill(Color.web("#FFFAEE"));
-		categoryTitle.setTextFill(Color.web("#689892"));
-		
+		title.setTextFill(ECommerceLaunch.MAIN_LIGHT);
+		categoryTitle.setTextFill(ECommerceLaunch.ACCENT_1_DARK);
 		
 		//Create hover style
-		setButtonHover(moreButton, 1);
-		setButtonHover(backButton, 0);
-		setButtonHover(accountButton, 0);
-		setButtonHover(cartButton, 0);
+		ECommerceLaunch.setButtonHover(moreButton, 1);
+		ECommerceLaunch.setButtonHover(backButton, 0);
+		ECommerceLaunch.setButtonHover(accountButton, 0);
+		ECommerceLaunch.setButtonHover(cartButton, 0);
 	}
 	
 	//Initialize the category in order to show items
@@ -127,8 +118,8 @@ public class ShowProductsController
 		{
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(getClass().getResource("fxml_product_page.fxml"));
-			Parent categoryScreen = loader.load();
-			Scene categoryScene = new Scene(categoryScreen, 800, 600);
+			Parent productScreen = loader.load();
+			Scene productScene = new Scene(productScreen,  ECommerceLaunch.WIDTH, ECommerceLaunch.HEIGHT);
 			
 			//Pass Product data to controller
 			ProductController control = loader.getController();
@@ -136,7 +127,7 @@ public class ShowProductsController
 			
 			Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
 			
-			window.setScene(categoryScene);
+			window.setScene(productScene);
 			window.show();
 		}
 	}
@@ -159,36 +150,13 @@ public class ShowProductsController
 			if((i+productpage)<items.size() && items.get(i+productpage) != null)
 			{
 				productButtons[i].setText(items.get(i+productpage).getName());
-				setButtonHover(productButtons[i], 1);
+				ECommerceLaunch.setButtonHover(productButtons[i], 1);
 			}
 			else
 			{
-				productButtons[i].setText("        NULL        ");
-				setButtonHover(productButtons[i], 2);
+				productButtons[i].setText("NULL");
+				ECommerceLaunch.setButtonHover(productButtons[i], 2);
 			}
-		}
-	}
-	
-	//Create transitions for hovering on and off a button
-	public void setButtonHover( Button button, int color )
-	{
-		if(color == 0)
-		{
-			button.setOnMouseEntered(e -> button.setStyle(HOVERED_BUTTON_STYLE));
-	        button.setOnMouseExited(e -> button.setStyle(IDLE_BUTTON_STYLE));
-		}
-		else if (color == 1)
-		{
-			button.setStyle(IDLE_BUTTON_TEAL);
-			button.setOnMouseEntered(e -> button.setStyle(HOVERED_BUTTON_TEAL));
-	        button.setOnMouseExited(e -> button.setStyle(IDLE_BUTTON_TEAL));
-		}
-		else if (color == 2)
-		{
-			//show button as disabled
-			button.setStyle(HOVERED_BUTTON_TEAL);
-			button.setOnMouseEntered(e -> button.setStyle(HOVERED_BUTTON_TEAL));
-	        button.setOnMouseExited(e -> button.setStyle(HOVERED_BUTTON_TEAL));
 		}
 	}
 	
@@ -206,7 +174,7 @@ public class ShowProductsController
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("fxml_category_page.fxml"));
 		Parent categoryScreen = loader.load();
-		Scene categoryScene = new Scene(categoryScreen, 800, 600);
+		Scene categoryScene = new Scene(categoryScreen, ECommerceLaunch.WIDTH, ECommerceLaunch.HEIGHT);
 		
 		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
 		

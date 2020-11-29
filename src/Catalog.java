@@ -138,12 +138,15 @@ public class Catalog
 	}
 	
 	//Search the catalog for a specific Product using the itemNumber
-	public Product findProduct(int category, int itemNumber)
+	public Product findProduct(int itemNumber)
 	{
-		for(Product product: allProducts[category])
+		for(int category = 0; category < allProducts.length; category++)
 		{
-			if(product.getItemNumber() == itemNumber)
-				return product;
+			for(Product product: allProducts[category])
+			{
+				if(product.getItemNumber() == itemNumber)
+					return product;
+			}
 		}
 		
 		return null;
