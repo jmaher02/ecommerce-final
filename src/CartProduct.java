@@ -6,45 +6,55 @@
 
 import java.text.DecimalFormat;
 
+import javafx.beans.property.*;
+
 public class CartProduct 
 {
 	private Product product;
-	private String productName;
-	private double productPrice;
-	private int productQty;
+	private StringProperty productName;
+	private double price;
+	private StringProperty productPrice;
+	private IntegerProperty productQty;
 	DecimalFormat decFormat;
 
 	public CartProduct(Product product, int quantity)
 	{
 		this.product = product;
-		productName = product.getName();
-		productPrice = product.getPrice();
-		productQty = quantity;
+		productName = new SimpleStringProperty(product.getName());
+		price = product.getPrice();
+		productQty = new SimpleIntegerProperty(quantity);
+
+		//Prepare for formatted output
+		String pattern = "##0.00";
+		decFormat = new DecimalFormat(pattern);
+		
+		String printPrice = "$" + decFormat.format( getPrice() );
+		productPrice = new SimpleStringProperty(printPrice);
 	}
 	
 	public void setQuantity(int quantity)
 	{
-		productQty = quantity;
+		productQty.set(quantity);
 	}
 
-	public String getName()
+	public String getProductName()
 	{
-		return productName;
+		return productName.get();
 	}
 	
 	public double getPrice()
 	{
-		return productPrice;
+		return price;
 	}
 	
-	public int getQuantity()
+	public int getProductQty()
 	{
-		return productQty;
+		return productQty.get();
 	}
 	
 	public double getSubtotal()
 	{
-		return product.getPrice() * productQty;
+		return getPrice() * getProductQty();
 	}
 	
 	public Product getProduct()
@@ -52,14 +62,19 @@ public class CartProduct
 		return product;
 	}
 	
-	public String printPrice()
+	public String getProductPrice()
 	{
-		return "$" + decFormat.format( product.getPrice() );
+		return productPrice.get();
 	}
 	
 	public String printSubtotal()
 	{
 		return "$" + decFormat.format( getSubtotal() );
+	}
+	
+	public String toString()
+	{
+		return productName + " QTY: " + productQty + " $" + productPrice;
 	}
 	
 }

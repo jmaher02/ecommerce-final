@@ -38,8 +38,8 @@
     </top>
     <center>
         <!-- Split screen with image on left and details on right-->
-        <HBox spacing="10" alignment="center"
-              style="-fx-background-color:floralwhite;-fx-padding:20">
+        <HBox spacing="10" alignment="center_left"
+              style="-fx-background-color:floralwhite;-fx-padding:50">
             <!-- Image Section -->
             <VBox spacing="10" alignment="center"
                 style="-fx-padding:8">
@@ -60,8 +60,10 @@
                 <HBox alignment="center_left" spacing="10">
                     <Label text="Quantity" 
                             style="-fx-font-size:12pt;"/>
-                    <TextField fx:id="quantity" maxWidth="70" 
+                    <TextField fx:id="quantityField" maxWidth="70" 
                             style="-fx-font-size:12pt;"/>
+                    <Label text="" fx:id="warning"
+                            style="-fx-font-size:10pt;" />
                 </HBox>
 
                 <Button text="ADD TO CART" fx:id="addToCart"

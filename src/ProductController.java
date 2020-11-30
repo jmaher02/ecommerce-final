@@ -27,7 +27,8 @@ public class ProductController
 	@FXML private Label productPrice;
 	@FXML private Label productID;
 	@FXML private Label productDetails;
-	@FXML private TextField quantity;
+	@FXML private TextField quantityField;
+	@FXML private Label warning;
 	
 	@FXML private Button addToCart;
 	@FXML private Button backButton;
@@ -52,6 +53,22 @@ public class ProductController
 		ECommerceLaunch.setButtonHover(accountButton, 0);
 		ECommerceLaunch.setButtonHover(addToCart, 1);
 		ECommerceLaunch.setButtonHover(cartButton, 0);
+	}
+	
+	//Initialize the product to be displayed
+	public void setProduct(Catalog saveCatalog, Product initProduct, int saveCategory)
+	{
+		catalog = saveCatalog;
+		product = initProduct;
+		category = saveCategory;
+		
+		productName.setText(product.getName());
+		productPrice.setText(product.printPrice());
+		productID.setText("Item #" + product.getItemNumber());
+		productDetails.setText(product.displayCharacteristics());
+		
+		//Set default image
+		productImage.setImage(new Image("images/defaultProduct.png"));
 	}
 	
 	@FXML
@@ -86,8 +103,8 @@ public class ProductController
 		Scene cartScene = new Scene(cartScreen, ECommerceLaunch.WIDTH, ECommerceLaunch.HEIGHT);
 		
 		//Pass existing cart data
-//		CartController control = loader.getController();
-//		control.initializeTable( /*get cart list*/ null);
+		CartController control = loader.getController();
+		control.initializeTable( );
 		
 		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
 		
@@ -98,23 +115,26 @@ public class ProductController
 	@FXML
 	public void updateCart(ActionEvent event)
 	{		
-		System.out.println("Pressed Button");
-	}
-	
-	//Initialize the product to be displayed
-	public void setProduct(Catalog saveCatalog, Product initProduct, int saveCategory)
-	{
-		catalog = saveCatalog;
-		product = initProduct;
-		category = saveCategory;
-		
-		productName.setText(product.getName());
-		productPrice.setText(product.printPrice());
-		productID.setText("Item #" + product.getItemNumber());
-		productDetails.setText(product.displayCharacteristics());
-		
-		//Set default image
-		productImage.setImage(new Image("images/defaultProduct.png"));
+		if(quantityField.getText().equals(""))
+		{
+			warning.setTextFill(ECommerceLaunch.WARNING);
+			warning.setText("*  Please give a quantity");
+		}
+		else if(warning.getText().indexOf("selection") == -1)
+		{
+			try {
+				int quantity = Integer.parseInt(quantityField.getText());
+				warning.setTextFill(ECommerceLaunch.ACCENT_2_DARK);
+				warning.setText("Your selection has been added");
+				
+				//Add item to Cart
+				CartController.addCartItem(product, quantity);
+			}
+			catch (NumberFormatException e) {
+				warning.setTextFill(ECommerceLaunch.WARNING);
+				warning.setText("Please enter a number");
+			}
+		}
 	}
 	
 }
