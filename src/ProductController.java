@@ -68,7 +68,7 @@ public class ProductController
 		productDetails.setText(product.displayCharacteristics());
 		
 		//Set default image
-		productImage.setImage(new Image("images/defaultProduct.png"));
+		productImage.setImage(new Image( product.showFeaturedPicture() ));
 	}
 	
 	@FXML

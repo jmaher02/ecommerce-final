@@ -18,6 +18,16 @@ public class Toy extends Product
 		maxAge = parse.nextInt();
 	}
 	
+	public Toy(int item, String name, double price, String description, String picture)
+	{
+		super(item,price,name, picture);
+		Scanner parse = new Scanner(description);
+		parse.useDelimiter(",");
+		category = parse.next();
+		minAge = parse.nextInt();
+		maxAge = parse.nextInt();
+	}
+	
 	@Override
 	public String displayCharacteristics() 
 	{
@@ -40,13 +50,6 @@ public class Toy extends Product
 		}
 		
 		return display + "\n";
-	}
-
-	@Override
-	public String showFeaturedPicture() 
-	{
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }

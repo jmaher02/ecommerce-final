@@ -13,6 +13,15 @@ public class Electronic extends Product
 		dimensions = parse.next();
 		weight = parse.nextDouble();
 	}
+
+	public Electronic(int item, String name, double price, String description, String picture)
+	{
+		super(item,price,name, picture);
+		Scanner parse = new Scanner(description);
+		parse.useDelimiter(",");
+		dimensions = parse.next();
+		weight = parse.nextDouble();	
+	}
 	
 	@Override
 	public String displayCharacteristics() 
@@ -21,13 +30,6 @@ public class Electronic extends Product
 		display += "WEIGHT: " + weight + " ounces\n";
 		
 		return display;
-	}
-
-	@Override
-	public String showFeaturedPicture() 
-	{
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }

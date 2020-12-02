@@ -24,6 +24,15 @@ public class VideoGame extends Product
 		console = parse.next();
 		preOwned = parse.nextBoolean();		
 	}
+	
+	public VideoGame(int item, String name, double price, String description, String picture)
+	{
+		super(item,price,name, picture);
+		Scanner parse = new Scanner(description);
+		parse.useDelimiter(",");
+		console = parse.next();
+		preOwned = parse.nextBoolean();		
+	}
 
 	@Override
 	public String displayCharacteristics() {
@@ -34,11 +43,4 @@ public class VideoGame extends Product
 			display += "NEW\n";
 		return display;
 	}
-
-	@Override
-	public String showFeaturedPicture() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }

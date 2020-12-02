@@ -10,6 +10,7 @@ public abstract class Product
 	private int itemNumber;
 	private double price;
 	private String productName;
+	private String productPicture;
 	DecimalFormat decFormat;
 	
 	public Product(int num, double itemPrice, String name)
@@ -17,6 +18,19 @@ public abstract class Product
 		itemNumber = num;				
 		price = itemPrice;
 		productName = name;
+		productPicture = "images/defaultProduct.png";
+		
+		//Prepare for formatted output
+		String pattern = "##0.00";
+		decFormat = new DecimalFormat(pattern);
+	}
+	
+	public Product(int num, double itemPrice, String name, String picture)
+	{
+		itemNumber = num;				
+		price = itemPrice;
+		productName = name;
+		productPicture = picture;
 		
 		//Prepare for formatted output
 		String pattern = "##0.00";
@@ -45,7 +59,10 @@ public abstract class Product
 	
 	public abstract String displayCharacteristics();
 	
-	public abstract String showFeaturedPicture();
+	public String showFeaturedPicture()
+	{
+		return productPicture;
+	}
 	
 	public String toString()
 	{

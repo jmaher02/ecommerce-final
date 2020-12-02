@@ -1,3 +1,4 @@
+import java.util.Scanner;
 
 public class ArtSupply extends Product 
 {
@@ -8,17 +9,16 @@ public class ArtSupply extends Product
 		super(item, price, name);
 		brand = description;
 	}
+
+	public ArtSupply(int item, String name, double price, String description, String picture)
+	{
+		super(item,price,name, picture);
+		brand = description;	
+	}
 	
 	@Override
 	public String displayCharacteristics() {
 		String display = "BRAND: " + brand;
 		return display + "\n";
 	}
-
-	@Override
-	public String showFeaturedPicture() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }

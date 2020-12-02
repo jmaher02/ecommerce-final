@@ -13,6 +13,15 @@ public class CampingGear extends Product
 		weight = parse.nextDouble();
 		dimensions = parse.next();
 	}
+
+	public CampingGear(int item, String name, double price, String description, String picture)
+	{
+		super(item,price,name, picture);
+		Scanner parse = new Scanner(description);
+		parse.useDelimiter(",");
+		weight = parse.nextDouble();
+		dimensions = parse.next();	
+	}
 	
 	@Override
 	public String displayCharacteristics() 
@@ -21,13 +30,6 @@ public class CampingGear extends Product
 		display += "WEIGHT: " + weight + " ounces\n";
 		
 		return display;
-	}
-
-	@Override
-	public String showFeaturedPicture() 
-	{
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }
