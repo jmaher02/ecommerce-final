@@ -132,7 +132,7 @@ public class ProductController
 			}
 			catch (NumberFormatException e) {
 				warning.setTextFill(ECommerceLaunch.WARNING);
-				warning.setText("Please enter a number");
+				warning.setText("*  Please enter a number");
 			}
 		}
 	}

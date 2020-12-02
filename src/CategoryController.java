@@ -136,8 +136,8 @@ public class CategoryController
 		Scene cartScene = new Scene(cartScreen, ECommerceLaunch.WIDTH, ECommerceLaunch.HEIGHT);
 		
 		//Pass existing cart data
-//		CartController control = loader.getController();
-//		control.initializeTable( /*get cart list*/ null);
+		CartController control = loader.getController();
+		control.initializeTable( );
 		
 		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
 		

@@ -13,9 +13,12 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.*;
 import javafx.stage.Stage;
+import javafx.util.converter.IntegerStringConverter;
 
 public class CartController 
 {
@@ -84,6 +87,9 @@ public class CartController
 		ProductQuantity.setCellValueFactory(new PropertyValueFactory<CartProduct,Integer>("productQty"));
 		
 		cartTable.setItems(userCart);
+		
+		cartTable.setEditable(true);
+		ProductQuantity.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter() ));
 	}
 	
 	//Update the total in the cart
@@ -101,7 +107,17 @@ public class CartController
 		DecimalFormat decFormat = new DecimalFormat(pattern);
 		
 		totalAmount.setText("$" + decFormat.format(total));
+	}
+	
+	//Allow the user to edit quantities of items in Cart
+	public void editQuantity(CellEditEvent<CartProduct, Integer> editedCell)
+	{
+		CartProduct itemSelected = cartTable.getSelectionModel().getSelectedItem();
+		itemSelected.setQuantity(Integer.parseInt(editedCell.getNewValue().toString()));
 		
+		System.out.println(itemSelected);
+		
+		updateTotal();
 	}
 	
 	@FXML
