@@ -51,7 +51,7 @@ public class ECommerceLaunch extends Application
 		  Catalog catalog = new Catalog();
 		  CartController.initializeCart();
 			
-	      URL url = getClass( ).getResource( "fxml_category_page.fxml" );
+	      URL url = getClass( ).getResource( "fxml_account_page.fxml" );
 	      BorderPane root = FXMLLoader.load( url );
 	      Scene scene = new Scene( root, WIDTH, HEIGHT );
 	      stage.setTitle( "Maher Merchandise" );

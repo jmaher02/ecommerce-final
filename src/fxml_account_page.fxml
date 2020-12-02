@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<!-- COLOR PALETTE -->
+<!--
+    Purple == mediumorchid ==   #BA55D3 ==  rgb(186,85,211)
+    White  == floralwhite  ==   #FFFAEE ==  rgb(255,250,238)
+    Teal1  == desaturatedcyan ==#689892 ==  rgb(104,152,146)
+    Teal2  == cadetgrey    ==   #8FB4A8 ==  rgb(143,180,168)
+    Sage2  == dirtywhite   ==   #EBEFCC ==  rgb(235,239,204)
+    Sage1  == sage         ==   #B0C485 ==  rgb(176,196,133)
+-->
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" 
+      fx:controller="AccountController">
+    <top>
+        <HBox spacing="10" alignment="center" fx:id="titlePane"
+              style="-fx-background-color:mediumorchid;-fx-padding:8">
+
+            <!-- BACK Button in top left -->
+            <Button text="HOME" fx:id="backButton"
+                style="-fx-background-color: #B0C485;"
+                onAction="#backToHome" />
+            <!-- STORE TITLE in center -->
+            <Label text="Maher Merchandise" fx:id="title"
+                   style="-fx-font-size:20pt;-fx-font-weight:bold;" />
+            <!-- ACCOUNT and CART button in top right-->
+            <Button text="ACCOUNT" fx:id="accountButton"
+                style="-fx-background-color: #B0C485;" />
+            <Button text="VIEW CART" fx:id="cartButton"
+                style="-fx-background-color: #B0C485;"
+                onAction="#viewCart" />
+
+        </HBox>
+    </top>
+    <center>
+        <!-- Body Page -->
+        <VBox spacing="10" alignment="center"
+            style="-fx-background-color: #FFFAEE;-fx-padding:25;" >
+            <!-- Page Title -->
+            <Label text="Account Information" fx:id="accountTitle"
+                style="-fx-font-size:16pt;-fx-font-weight:bold;"/>
+
+            <!-- Split Page for image and Account Info-->
+            <HBox spacing="10" alignment="center_left">
+                <!-- Image Section -->
+                <VBox spacing="10" alignment="center"
+                    style="-fx-padding:8">
+                    <ImageView fx:id="userImage">
+
+                    </ImageView>
+                    
+                </VBox>  <!-- End Image Section -->
+                <!-- Account Info Section-->
+                <VBox spacing="10" alignment="center_left"
+                    style="-fx-padding:8">
+                    <HBox alignment="center_left" 
+                            style="-fx-padding:5;" >
+                        <Label text="Name" fx:id="nameTitle"
+                            style="-fx-font-size:12pt;-fx-font-weight:bold;" />
+                        <Label text="" fx:id="nameLabel"
+                            style="-fx-font-size:12pt;" />
+                    </HBox>
+                    <HBox alignment="center_left" 
+                            style="-fx-padding:5;" >
+                        <Label text="Email" fx:id="emailTitle"
+                            style="-fx-font-size:12pt;-fx-font-weight:bold;" />
+                        <Label text="" fx:id="emailLabel"
+                            style="-fx-font-size:12pt;" />
+                    </HBox>
+                    <Label text="Change password" fx:id="passwordTitle"
+                            style="-fx-font-size:12pt;-fx-font-weight:bold;" />
+                    <HBox spacing="5" alignment="center_left" 
+                            style="-fx-padding:5;" >
+                        <Label text="Old password" fx:id="oldPasswordLabel"
+                            style="-fx-font-size:10pt;;" />
+                        <TextField fx:id="oldPasswordInput" maxWidth="100" 
+                            style="-fx-font-size:10pt;"/>
+                        <Label text="New password" fx:id="newPasswordLabel"
+                            style="-fx-font-size:10pt;" />
+                        <TextField fx:id="newPasswordInput" maxWidth="100" 
+                            style="-fx-font-size:10pt;"/>
+                        <Button text="UPDATE" fx:id="updatePasswordButton"
+                            style="-fx-background-color: #689892;"
+                            onAction="#updatePassword" />
+                        <Label text="" fx:id="passwordWarning"
+                            style="-fx-font-size:10pt;" />
+                    </HBox>
+                </VBox> <!-- End Account Info Section -->
+            </HBox>
+            <!-- Table Title -->
+            <TableView fx:id="cartTable"  >
+            <columns>
+                <TableColumn text="Product" fx:id="ProductName"  />
+                <TableColumn text="Quantity" fx:id="ProductQuantity"  />
+                <TableColumn text="Price" fx:id="ProductPrice"  />
+            </columns>
+            </TableView>
+            <!-- Display Cart Total -->
+            <HBox spacing="10" alignment="center_right"
+                style="-fx-padding:25;">
+                <Label text="Cart Total" fx:id="totalTitle"
+                    style="-fx-font-size:12pt; -fx-font-weight:bold;" />
+                <Label text="0.00" fx:id="totalAmount"
+                    style="-fx-font-size:12pt; -fx-font-weight:bold;" />
+            </HBox>
+        </VBox>  <!-- End Body Page-->
+    </center>
+</BorderPane>
