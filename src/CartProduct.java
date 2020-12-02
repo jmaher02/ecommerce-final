@@ -5,10 +5,10 @@
  */
 
 import java.text.DecimalFormat;
-
+import java.io.Serializable;
 import javafx.beans.property.*;
 
-public class CartProduct 
+public class CartProduct implements Serializable
 {
 	private Product product;
 	private StringProperty productName;

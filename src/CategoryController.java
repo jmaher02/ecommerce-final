@@ -51,6 +51,17 @@ public class CategoryController
 			ECommerceLaunch.setButtonHover(categories[i], 1);
 		}
 		
+		if(AccountController.user != null)
+		{
+			accountButton.setText("ACCOUNT");
+			accountButton.setOnAction( e -> {  
+				try {
+					getAccount(e);
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}} );
+		}
+		
 		//Create hover style
 		ECommerceLaunch.setButtonHover(backButton, 0);
 		ECommerceLaunch.setButtonHover(accountButton, 0);
@@ -125,6 +136,20 @@ public class CategoryController
 	@FXML void userSignIn( ActionEvent event)
 	{
 		System.out.println("ACCOUNT SCREEN");
+	}
+	
+	@FXML
+	public void getAccount(ActionEvent event) throws IOException
+	{
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("fxml_account_page.fxml"));
+		Parent acctScreen = loader.load();
+		Scene acctScene = new Scene(acctScreen, ECommerceLaunch.WIDTH, ECommerceLaunch.HEIGHT);
+		
+		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+		
+		window.setScene(acctScene);
+		window.show();
 	}
 	
 	@FXML

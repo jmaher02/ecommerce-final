@@ -7,27 +7,30 @@
  *  - saved cart
  */
 
-import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import java.io.Serializable;
+import java.util.ArrayList;
 
-public class User 
+public class User implements Serializable
 {
+	private String userName;
 	private String firstName;
 	private String lastName;
 	private String email;
 	private String password;
 	//private String profile_pic;  //Should be image data_type
-	private ObservableList<CartProduct> savedCart;
+	private ArrayList<CartProduct> savedCart;
 	private String picFile;
 	
-	public User(String first, String last, String email, String pword)
+	public User(String uName, String first, String last, String email, String pword)
 	{
+		userName = uName;
 		firstName = first;
 		lastName = last;
 		this.email = email;
 		password = pword;
-		savedCart = FXCollections.observableArrayList();
+		savedCart = new ArrayList<CartProduct>();
 		picFile = "images/userIconDefault.png";
 	}
 	
@@ -46,6 +49,20 @@ public class User
 		email = newEmail;
 	}
 	
+	public void setCart( ObservableList<CartProduct> cart)
+	{
+		savedCart = new ArrayList<CartProduct>();
+		for(CartProduct product : cart)
+		{
+			savedCart.add(product);
+		}
+	}
+	
+	public String getUserName()
+	{
+		return userName;
+	}
+	
 	public String getName()
 	{
 		return firstName + " " + lastName;
@@ -61,6 +78,17 @@ public class User
 		return password.equals(toCheck);
 	}
 	
+	public boolean setPassword( String toCheck, String newPassword)
+	{
+		if(correctPassword(toCheck))
+		{
+			password = newPassword;
+			return true;
+		}
+		else
+			return false;
+	}
+	
 	public String showFeaturedPicture()
 	{
 		return picFile;
@@ -68,7 +96,14 @@ public class User
 	
 	public ObservableList<CartProduct> getUserCart()
 	{
-		return savedCart;
+		ObservableList<CartProduct> cart = FXCollections.observableArrayList();
+		
+		for(CartProduct product : savedCart)
+		{
+			cart.add(product);
+		}
+		
+		return cart;
 	}
 	
 	//A password is checked for high security before allowing a user to assign the password.

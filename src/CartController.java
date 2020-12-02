@@ -79,6 +79,12 @@ public class CartController
 		System.out.println(newItem);
 	}
 	
+	// Add User's Cart to current cart
+	public static void addUserCart(ObservableList<CartProduct> cart)
+	{
+		userCart = cart;
+	}
+	
 	//Store data into the table
 	public void initializeTable( )
 	{

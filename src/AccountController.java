@@ -5,7 +5,6 @@
 
 import java.io.IOException;
 import java.text.DecimalFormat;
-import java.util.List;
 import javafx.collections.*;
 import javafx.event.*;
 import javafx.fxml.*;
@@ -13,18 +12,15 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.*;
 import javafx.stage.Stage;
-import javafx.util.converter.IntegerStringConverter;
 
 public class AccountController 
 {
 	//Models
-	private static User user;
-	public static ObservableList<CartProduct> userCart;
+	public static User user;
+	public ObservableList<CartProduct> userCart;
 	
 	//Nodes
 	@FXML private Label title;
@@ -47,6 +43,7 @@ public class AccountController
 	@FXML private Button accountButton;
 	@FXML private Button cartButton;
 	@FXML private Button updatePasswordButton;
+	@FXML private Button setCartButton;
 	
     @FXML private ImageView userImage;
 	
@@ -70,8 +67,20 @@ public class AccountController
 		totalTitle.setTextFill(ECommerceLaunch.ACCENT_1_LIGHT);
 		passwordWarning.setTextFill(ECommerceLaunch.WARNING);
 		
+		//Access the user's info
+		if(user != null)
+		{
+			nameLabel.setText(user.getName());
+			emailLabel.setText(user.getEmail());
+			userCart = user.getUserCart();
+		}
+		else
+		{
+			userCart = FXCollections.observableArrayList();
+		}
+		
 		//Update Total Label
-		//updateTotal();
+		updateTotal();
 		
 		//Size the columns
 		cartTable.getColumns().get(0).prefWidthProperty().bind(cartTable.widthProperty().multiply(0.5));  
@@ -83,13 +92,13 @@ public class AccountController
   		ECommerceLaunch.setButtonHover(accountButton, 0);
   		ECommerceLaunch.setButtonHover(cartButton, 0);
   		ECommerceLaunch.setButtonHover(updatePasswordButton, 1);
+  		ECommerceLaunch.setButtonHover(setCartButton, 1);  		
 	}
 	
 	//Set the user from the sign in screen
 	public static void initializeAccount( User setUser )
 	{
 		user = setUser;
-		userCart = user.getUserCart();
 	}
 	
 	//Store data into the table
@@ -117,6 +126,26 @@ public class AccountController
 		DecimalFormat decFormat = new DecimalFormat(pattern);
 		
 		totalAmount.setText("$" + decFormat.format(total));
+	}
+	
+	@FXML
+	public void restoreCart( ActionEvent event ) throws IOException
+	{
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("fxml_cart_page.fxml"));
+		Parent cartScreen = loader.load();
+		Scene cartScene = new Scene(cartScreen, ECommerceLaunch.WIDTH, ECommerceLaunch.HEIGHT);
+		
+		//Pass existing cart data
+		CartController control = loader.getController();
+		control.initializeTable( );
+		
+		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+		
+		window.setScene(cartScene);
+		window.show();
+		
+		user.setCart( FXCollections.observableArrayList() );
 	}
 	
 	@FXML
@@ -154,6 +183,15 @@ public class AccountController
 	@FXML
 	public void updatePassword(ActionEvent event)
 	{
+		if(user != null && user.setPassword(oldPasswordInput.getText(), newPasswordInput.getText()))
+		{
+			passwordWarning.setText("Password has been updated");
+		}
+		else
+		{
+			passwordWarning.setText("Password not updated, please enter correct password. ");
+		}
+		
 		oldPasswordInput.setText("");
 		newPasswordInput.setText("");
 	}

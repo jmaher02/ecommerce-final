@@ -4,7 +4,9 @@
  *  
  */
 
+import java.io.*;
 import java.net.URL;
+import java.util.ArrayList;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.BorderPane;
@@ -41,6 +43,9 @@ public class ECommerceLaunch extends Application
     //Button styling Teal Accent 1
     public static final String IDLE_BUTTON_TEAL = "-fx-background-color: " + TEAL_DARK;
     public static final String HOVERED_BUTTON_TEAL = "-fx-background-color: " + TEAL_LIGHT;
+    
+    //List of all Users
+    public static ArrayList<User> allUsers = new ArrayList<User>( );
 
 	@Override
 	public void start( Stage stage ) 
@@ -50,8 +55,11 @@ public class ECommerceLaunch extends Application
 		  //Some initializing
 		  Catalog catalog = new Catalog();
 		  CartController.initializeCart();
+		  
+//		  getUserAccounts();
+//		  AccountController.initializeAccount(allUsers.get(0));
 			
-	      URL url = getClass( ).getResource( "fxml_account_page.fxml" );
+	      URL url = getClass( ).getResource( "fxml_Category_page.fxml" );
 	      BorderPane root = FXMLLoader.load( url );
 	      Scene scene = new Scene( root, WIDTH, HEIGHT );
 	      stage.setTitle( "Maher Merchandise" );
@@ -61,6 +69,54 @@ public class ECommerceLaunch extends Application
 	    catch( Exception e )
 	    {
 	      e.printStackTrace( ); 
+	    }
+	}
+	
+	//Read in user Accounts
+	public static void getUserAccounts( )
+	{
+		try
+	    {
+	      FileInputStream fis = new FileInputStream( "userObjects" );
+	      ObjectInputStream ois = new ObjectInputStream( fis );
+
+	      try
+	      {
+	        while ( true )
+	        {
+	          // read object, type cast returned object to FlightRecord2
+	          User temp = ( User ) ois.readObject( );
+
+	          // add the User object read to allUsers
+	          allUsers.add( temp );
+	        }
+	      } // end inner try block
+
+	      catch ( EOFException eofe )
+	      {
+	        System.out.println( "End of the file reached" );
+	      }
+
+	      catch ( ClassNotFoundException cnfe )
+	      {
+	        System.out.println( cnfe.getMessage( ) );
+	      }
+
+	      finally
+	      {
+	        System.out.println( "Closing file" );
+	        ois.close( );
+	      }
+	    } // end outer try block
+
+	    catch ( FileNotFoundException fnfe )
+	    {
+	      System.out.println( "Unable to find objects" );
+	    }
+
+	    catch ( IOException ioe )
+	    {
+	      ioe.printStackTrace( );
 	    }
 	}
 	

@@ -56,14 +56,14 @@
                 <!-- Account Info Section-->
                 <VBox spacing="10" alignment="center_left"
                     style="-fx-padding:8">
-                    <HBox alignment="center_left" 
+                    <HBox alignment="center_left"  spacing="10"
                             style="-fx-padding:5;" >
                         <Label text="Name" fx:id="nameTitle"
                             style="-fx-font-size:12pt;-fx-font-weight:bold;" />
                         <Label text="" fx:id="nameLabel"
                             style="-fx-font-size:12pt;" />
                     </HBox>
-                    <HBox alignment="center_left" 
+                    <HBox alignment="center_left"  spacing="10"
                             style="-fx-padding:5;" >
                         <Label text="Email" fx:id="emailTitle"
                             style="-fx-font-size:12pt;-fx-font-weight:bold;" />
@@ -101,6 +101,9 @@
             <!-- Display Cart Total -->
             <HBox spacing="10" alignment="center_right"
                 style="-fx-padding:25;">
+                <Button text="RESTORE MY CART" fx:id="setCartButton"
+                        style="-fx-background-color: #689892;"  
+                        onAction="#restoreCart"/>
                 <Label text="Cart Total" fx:id="totalTitle"
                     style="-fx-font-size:12pt; -fx-font-weight:bold;" />
                 <Label text="0.00" fx:id="totalAmount"
