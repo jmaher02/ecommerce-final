@@ -153,7 +153,7 @@ public class AccountController
 		
 		//Pass existing cart data
 		CartController control = loader.getController();
-		control.initializeTable( );
+		control.addUserCart(userCart);
 		
 		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
 		

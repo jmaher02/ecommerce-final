@@ -14,7 +14,7 @@
 -->
 
 <BorderPane xmlns:fx="http://javafx.com/fxml" 
-      fx:controller="SignInController">
+      fx:controller="SignUpController">
     <top>
         <HBox spacing="10" alignment="center" fx:id="titlePane"
               style="-fx-background-color:mediumorchid;-fx-padding:8">
@@ -56,7 +56,7 @@
                     style="-fx-font-size:9pt;" />
             </HBox>
 
-            <HBox spacing="10" alignment="center_left" style="-fx-padding:5;">
+            <HBox spacing="10" alignment="center_left" >
                 <Label text="Not a user yet? " fx:id="signUpLabel" 
                     style="-fx-font-size:12pt;" />
                 <Button text="Sign Up" fx:id="signUpButton"

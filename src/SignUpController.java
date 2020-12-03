@@ -14,7 +14,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.*;
 import javafx.stage.Stage;
 
-public class SignInController 
+public class SignUpController 
 {
 
 	//Nodes
@@ -31,7 +31,6 @@ public class SignInController
 	@FXML private Button accountButton;
 	@FXML private Button cartButton;
 	@FXML private Button submitSignIn;
-	@FXML private Button signUpButton;
 
 	@FXML
 	public void initialize( )
@@ -47,7 +46,6 @@ public class SignInController
   		ECommerceLaunch.setButtonHover(accountButton, 3);
   		ECommerceLaunch.setButtonHover(cartButton, 0);
   		ECommerceLaunch.setButtonHover(submitSignIn, 1);
-  		ECommerceLaunch.setButtonHover(signUpButton, 4);
 	}
 	
 	@FXML
@@ -82,7 +80,7 @@ public class SignInController
 		window.show();
 	}
 	
-	public void findUserAccount(ActionEvent event)
+	public void setUserAccount(ActionEvent event)
 	{
 		boolean found = false;
 		ArrayList<User> allUsers = ECommerceLaunch.getAllUsers();
@@ -90,44 +88,26 @@ public class SignInController
 		{
 			if(user.getUserName().equals(userNameInput.getText()))
 			{
-				if(user.correctPassword(passwordInput.getText()))
-				{
-					notificationLabel.setTextFill(ECommerceLaunch.ACCENT_2_DARK);
-					notificationLabel.setText("Welcome back, "+ user.getName() + "!");
-					AccountController.initializeAccount(user);
-					found = true;
-					break;
-				}
-				else
-				{
-					notificationLabel.setTextFill(ECommerceLaunch.WARNING);
-					notificationLabel.setText("Incorrect Username and Password");
-					break;
-				}
+				notificationLabel.setTextFill(ECommerceLaunch.WARNING);
+				notificationLabel.setText("Username not available");
+				found = true;
+				break;
 			}
 		}
 
 		if(!found)
 		{
-			notificationLabel.setTextFill(ECommerceLaunch.WARNING);
-			notificationLabel.setText("Incorrect Username and Password");
+			if(User.isValidPassword(passwordInput.getText()))
+			{
+				//User acct = new User();
+				//AccountController.initializeAccount(acct);
+				notificationLabel.setTextFill(ECommerceLaunch.ACCENT_2_DARK);
+				notificationLabel.setText("Thank you, "  );				
+			}
 		}
 		
 		userNameInput.setText("");
 		passwordInput.setText("");
-	}
-	
-	@FXML 
-	public void goToNewAccount( ActionEvent event ) throws IOException
-	{
-		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource("fxml_signup_page.fxml"));
-		Parent signUpScreen = loader.load();
-		Scene signUpScene = new Scene(signUpScreen, ECommerceLaunch.WIDTH, ECommerceLaunch.HEIGHT);
 		
-		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-		
-		window.setScene(signUpScene);
-		window.show();
 	}
 }

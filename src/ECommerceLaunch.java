@@ -155,6 +155,12 @@ public class ECommerceLaunch extends Application
 			button.setOnMouseEntered(e -> button.setStyle(HOVERED_BUTTON_SAGE));
 	        button.setOnMouseExited(e -> button.setStyle(HOVERED_BUTTON_SAGE));
 		}
+		else if ( color == 4)
+		{
+			button.setTextFill(ACCENT_1_DARK);
+			button.setOnMouseEntered(e -> button.setTextFill(ACCENT_1_LIGHT));
+	        button.setOnMouseExited(e -> button.setTextFill(ACCENT_1_DARK));
+		}
 	}
 	
 	public static void main(String[] args) 

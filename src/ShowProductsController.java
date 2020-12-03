@@ -44,18 +44,22 @@ public class ShowProductsController
 	@FXML
 	public void initialize()
 	{		
-//		//init method not working
-//		if(catalog == null)
-//		{
-//			catalog = new Catalog();
-//			category = 5;
-//			items = catalog.getCategoryProducts(category);
-//		}
-		
 		//Update Label Text Colors
 		title.setTextFill(ECommerceLaunch.MAIN_LIGHT);
 		categoryTitle.setTextFill(ECommerceLaunch.ACCENT_1_DARK);
 		
+		//Set the Sign In / Account Button
+		if(AccountController.user != null)
+		{
+			accountButton.setText("ACCOUNT");
+			accountButton.setOnAction( e -> {  
+				try {
+					getAccount(e);
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}} );
+		}
+				
 		//Create hover style
 		ECommerceLaunch.setButtonHover(moreButton, 1);
 		ECommerceLaunch.setButtonHover(backButton, 0);
@@ -182,9 +186,32 @@ public class ShowProductsController
 		window.show();
 	}
 	
-	@FXML void userSignIn( ActionEvent event)
+	@FXML
+	public void userSignIn( ActionEvent event ) throws IOException
 	{
-		System.out.println("ACCOUNT SCREEN");
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("fxml_signin_page.fxml"));
+		Parent signInScreen = loader.load();
+		Scene signInScene = new Scene(signInScreen, ECommerceLaunch.WIDTH, ECommerceLaunch.HEIGHT);
+		
+		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+		
+		window.setScene(signInScene);
+		window.show();
+	}
+	
+	@FXML
+	public void getAccount(ActionEvent event) throws IOException
+	{
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("fxml_account_page.fxml"));
+		Parent acctScreen = loader.load();
+		Scene acctScene = new Scene(acctScreen, ECommerceLaunch.WIDTH, ECommerceLaunch.HEIGHT);
+		
+		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+		
+		window.setScene(acctScene);
+		window.show();
 	}
 	
 	@FXML

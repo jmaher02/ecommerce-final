@@ -132,10 +132,19 @@ public class CategoryController
 	{
 		System.out.println("GO BACK");
 	}
-	
-	@FXML void userSignIn( ActionEvent event)
+
+	@FXML
+	public void userSignIn( ActionEvent event ) throws IOException
 	{
-		System.out.println("ACCOUNT SCREEN");
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("fxml_signin_page.fxml"));
+		Parent signInScreen = loader.load();
+		Scene signInScene = new Scene(signInScreen, ECommerceLaunch.WIDTH, ECommerceLaunch.HEIGHT);
+		
+		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+		
+		window.setScene(signInScene);
+		window.show();
 	}
 	
 	@FXML
