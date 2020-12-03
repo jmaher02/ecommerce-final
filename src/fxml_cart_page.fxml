@@ -54,6 +54,10 @@
             <!-- Display Cart Total -->
             <HBox spacing="10" alignment="center_right"
                 style="-fx-padding:25;">
+                <Label text="" fx:id="notificationLabel" style="-fx-font-size:9pt;" />
+                <Button text="SAVE MY CART" fx:id="setCartButton"
+                        style="-fx-background-color: #689892;"  
+                        onAction="#saveCart"/>
                 <Label text="Cart Total" fx:id="totalTitle"
                     style="-fx-font-size:12pt; -fx-font-weight:bold;" />
                 <Label text="0.00" fx:id="totalAmount"

@@ -112,6 +112,9 @@ public class AccountController
 		else
 		{
 			user.setCart(saveCart);
+			System.out.println(saveCart.toString());
+			System.out.println("HERE======");
+			System.out.println(user.getUserCart().toString());
 			return true;
 		}
 	}
@@ -152,8 +155,7 @@ public class AccountController
 		Scene cartScene = new Scene(cartScreen, ECommerceLaunch.WIDTH, ECommerceLaunch.HEIGHT);
 		
 		//Pass existing cart data
-		CartController control = loader.getController();
-		control.addUserCart(userCart);
+		CartController.addUserCart(userCart);
 		
 		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
 		

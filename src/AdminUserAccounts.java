@@ -15,6 +15,7 @@ public class AdminUserAccounts
 	{
 		//Create default users
 		User admin = new User("Username", "Admin", "LstName", "email@email.com", "admin");
+		User test = new User("jillian.maher", "Jillian", "Maher", "jillian@maher.com", "FinalProject2020");
 		
 		try
 		   {
@@ -26,6 +27,7 @@ public class AdminUserAccounts
 
 		    // write the objects to the file
 		    oos.writeObject( admin );
+		    oos.writeObject( test );
 		    System.out.println(oos);
 
 		    // release resources associated with the objects file

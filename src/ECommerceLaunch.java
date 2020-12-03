@@ -59,7 +59,7 @@ public class ECommerceLaunch extends Application
 		  setUserAccounts();
 		  //TESTING AccountController.initializeAccount(allUsers.get(0));
 			
-	      URL url = getClass( ).getResource( "fxml_signin_page.fxml" );
+	      URL url = getClass( ).getResource( "fxml_category_page.fxml" );
 	      BorderPane root = FXMLLoader.load( url );
 	      Scene scene = new Scene( root, WIDTH, HEIGHT );
 	      stage.setTitle( "Maher Merchandise" );
@@ -119,6 +119,82 @@ public class ECommerceLaunch extends Application
 	    {
 	      ioe.printStackTrace( );
 	    }
+	}
+	
+	//Save User Account to file
+	public static void saveUserAccount( User acct )
+	{
+		allUsers.add(acct);
+		try
+		   {
+		    FileOutputStream fos = new FileOutputStream
+		                                  ( "userObjects", false );
+		             // false means we will write to objects
+
+		    ObjectOutputStream oos = new ObjectOutputStream( fos );
+
+		    // write the objects to the file
+		    for(User user: allUsers)
+		    {
+			    oos.writeObject( user );
+		    }
+		    System.out.println( acct );
+
+		    // release resources associated with the objects file
+		    oos.close( );
+		   }
+
+		   catch ( FileNotFoundException fnfe )
+		   {
+		     System.out.println( "Unable to write to objects" );
+		   }
+
+		   catch ( IOException ioe )
+		   {
+		      ioe.printStackTrace( );
+		   }
+	}
+	
+	//Update user's saved Cart
+	public static void updateUserCart( User acct )
+	{
+		//Locate old user account and replace cart (maybe redundant due to pass by reference ??
+		for(User user:allUsers)
+		{
+			if(user.getUserName().equals(acct.getUserName()))
+			{
+				user.setCart(acct.getUserCart());
+			}
+		}
+			
+		try
+		   {
+		    FileOutputStream fos = new FileOutputStream
+		                                  ( "userObjects", false );
+		             // false means we will write to objects
+
+		    ObjectOutputStream oos = new ObjectOutputStream( fos );
+
+		    // write the objects to the file
+		    for(User user: allUsers)
+		    {
+			    oos.writeObject( user );
+		    }
+		    System.out.println( acct );
+
+		    // release resources associated with the objects file
+		    oos.close( );
+		   }
+
+		   catch ( FileNotFoundException fnfe )
+		   {
+		     System.out.println( "Unable to write to objects" );
+		   }
+
+		   catch ( IOException ioe )
+		   {
+		      ioe.printStackTrace( );
+		   }
 	}
 	
 	//Access the users in other classes

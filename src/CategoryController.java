@@ -154,6 +154,10 @@ public class CategoryController
 		loader.setLocation(getClass().getResource("fxml_account_page.fxml"));
 		Parent acctScreen = loader.load();
 		Scene acctScene = new Scene(acctScreen, ECommerceLaunch.WIDTH, ECommerceLaunch.HEIGHT);
+
+		//Pass existing cart data
+		AccountController control = loader.getController();
+		control.initializeTable( );
 		
 		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
 		

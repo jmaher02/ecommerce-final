@@ -19,25 +19,34 @@ public class SignUpController
 
 	//Nodes
 	@FXML private Label title;
-	@FXML private Label signInTitle;
+	@FXML private Label signUpTitle;
 	@FXML private Label userNameTitle;
+	@FXML private Label firstTitle;
+	@FXML private Label lastTitle;
+	@FXML private Label emailTitle;
 	@FXML private Label passwordTitle;
 	@FXML private Label notificationLabel;
 	
 	@FXML private TextField userNameInput;
+	@FXML private TextField firstNameInput;
+	@FXML private TextField lastNameInput;
+	@FXML private TextField emailInput;
 	@FXML private TextField passwordInput;
 
 	@FXML private Button backButton;
 	@FXML private Button accountButton;
 	@FXML private Button cartButton;
-	@FXML private Button submitSignIn;
+	@FXML private Button submitSignUp;
 
 	@FXML
 	public void initialize( )
 	{
 		title.setTextFill(ECommerceLaunch.MAIN_LIGHT);
-		signInTitle.setTextFill(ECommerceLaunch.ACCENT_1_DARK);
+		signUpTitle.setTextFill(ECommerceLaunch.ACCENT_1_DARK);
 		userNameTitle.setTextFill(ECommerceLaunch.ACCENT_1_LIGHT);
+		firstTitle.setTextFill(ECommerceLaunch.ACCENT_1_LIGHT);
+		lastTitle.setTextFill(ECommerceLaunch.ACCENT_1_LIGHT);
+		emailTitle.setTextFill(ECommerceLaunch.ACCENT_1_LIGHT);
 		passwordTitle.setTextFill(ECommerceLaunch.ACCENT_1_LIGHT);
 
 	
@@ -45,7 +54,7 @@ public class SignUpController
   		ECommerceLaunch.setButtonHover(backButton, 0);
   		ECommerceLaunch.setButtonHover(accountButton, 3);
   		ECommerceLaunch.setButtonHover(cartButton, 0);
-  		ECommerceLaunch.setButtonHover(submitSignIn, 1);
+  		ECommerceLaunch.setButtonHover(submitSignUp, 1);
 	}
 	
 	@FXML
@@ -90,6 +99,7 @@ public class SignUpController
 			{
 				notificationLabel.setTextFill(ECommerceLaunch.WARNING);
 				notificationLabel.setText("Username not available");
+				userNameInput.setText("");
 				found = true;
 				break;
 			}
@@ -99,15 +109,27 @@ public class SignUpController
 		{
 			if(User.isValidPassword(passwordInput.getText()))
 			{
-				//User acct = new User();
-				//AccountController.initializeAccount(acct);
+				User acct = new User(userNameInput.getText(), firstNameInput.getText(), 
+									lastNameInput.getText(), emailInput.getText(), passwordInput.getText());
+				AccountController.initializeAccount(acct);
+				ECommerceLaunch.saveUserAccount(acct);
 				notificationLabel.setTextFill(ECommerceLaunch.ACCENT_2_DARK);
-				notificationLabel.setText("Thank you, "  );				
+				notificationLabel.setText("Thank you! "  );	
+
+				userNameInput.setText("");
+				firstNameInput.setText("");
+				lastNameInput.setText("");
+				emailInput.setText("");
+				passwordInput.setText("");
+			}
+			else
+			{
+				notificationLabel.setTextFill(ECommerceLaunch.WARNING);
+				notificationLabel.setText("Password must contain at least one uppercase, one lowercase, and one number"  );	
+				passwordInput.setText("");
 			}
 		}
 		
-		userNameInput.setText("");
-		passwordInput.setText("");
 		
 	}
 }

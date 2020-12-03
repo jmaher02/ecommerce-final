@@ -28,10 +28,12 @@ public class CartController
 	@FXML private Label cartTitle;
 	@FXML private Label totalTitle;
 	@FXML private Label totalAmount;
+	@FXML private Label notificationLabel;
 
 	@FXML private Button backButton;
 	@FXML private Button accountButton;
 	@FXML private Button cartButton;
+	@FXML private Button setCartButton;
 	
 	@FXML private TableView<CartProduct> cartTable;
 	@FXML private TableColumn<CartProduct, String> ProductName;
@@ -71,6 +73,7 @@ public class CartController
   		ECommerceLaunch.setButtonHover(backButton, 0);
   		ECommerceLaunch.setButtonHover(accountButton, 0);
   		ECommerceLaunch.setButtonHover(cartButton, 3);
+  		ECommerceLaunch.setButtonHover(setCartButton, 1);
 	}
 	
 	// Instantiate Cart object from Main Launch file
@@ -170,11 +173,31 @@ public class CartController
 		loader.setLocation(getClass().getResource("fxml_account_page.fxml"));
 		Parent acctScreen = loader.load();
 		Scene acctScene = new Scene(acctScreen, ECommerceLaunch.WIDTH, ECommerceLaunch.HEIGHT);
+
+		//Pass existing cart data
+		AccountController control = loader.getController();
+		control.initializeTable( );
 		
 		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
 		
 		window.setScene(acctScene);
 		window.show();
+	}
+	
+	@FXML
+	public void saveCart( ActionEvent event ) throws IOException
+	{
+		if(AccountController.saveCart(userCart))
+		{
+			notificationLabel.setTextFill(ECommerceLaunch.ACCENT_2_DARK);
+			notificationLabel.setText("Cart saved in Account");
+		
+		}
+		else
+		{
+			notificationLabel.setTextFill(ECommerceLaunch.WARNING);
+			notificationLabel.setText("Sign In to save your cart!");
+		}
 	}
 	
 	@FXML 

@@ -27,7 +27,7 @@
             <Label text="Maher Merchandise" fx:id="title"
                    style="-fx-font-size:20pt;-fx-font-weight:bold;" />
             <!-- ACCOUNT and CART button in top right-->
-            <Button text="SIGN IN" fx:id="accountButton"
+            <Button text="SIGN UP" fx:id="accountButton"
                 style="-fx-background-color: #B0C485;" />
             <Button text="VIEW CART" fx:id="cartButton"
                 style="-fx-background-color: #B0C485;"
@@ -36,33 +36,39 @@
         </HBox>
     </top>
     <center>
-        <VBox spacing="10" alignment="center_left" 
-                style="-fx-background-color:floralwhite;-fx-padding:100;"  >
+        <VBox spacing="5" alignment="center_left" 
+                style="-fx-background-color:floralwhite;-fx-padding:80;"  >
             <!-- Sign in Form-->
-            <Label text="Please Sign In" fx:id="signInTitle" alignment="center"
+            <Label text="Please Provide Your Information" fx:id="signUpTitle" alignment="center"
                 style="-fx-font-size:16pt;-fx-font-weight:bold;" />
             <Label text="Username" fx:id="userNameTitle"
                 style="-fx-font-size:12pt;" />
             <TextField fx:id="userNameInput" style="-fx-font-size:12pt;" />
+            
+            <Label text="First Name" fx:id="firstTitle"
+                style="-fx-font-size:12pt;" />
+            <TextField fx:id="firstNameInput" style="-fx-font-size:12pt;" /> 
+            <Label text="Last Name" fx:id="lastTitle"
+                style="-fx-font-size:12pt;" />
+            <TextField fx:id="lastNameInput" style="-fx-font-size:12pt;" /> 
+            
+            <Label text="Email" fx:id="emailTitle"
+                style="-fx-font-size:12pt;" />
+            <TextField fx:id="emailInput" style="-fx-font-size:12pt;" /> 
+            
             <Label text="Password" fx:id="passwordTitle"
                 style="-fx-font-size:12pt;" />
             <TextField fx:id="passwordInput" style="-fx-font-size:12pt;" /> 
-
+            
+            
             <HBox spacing="10" alignment="center_left">
-                <Button text="SIGN IN" fx:id="submitSignIn"
+                <Button text="SIGN UP" fx:id="submitSignUp"
                     style="-fx-background-color:#689892;"
-                    onAction="#findUserAccount" />
+                    onAction="#setUserAccount" />
                 <Label text="" fx:id="notificationLabel" 
                     style="-fx-font-size:9pt;" />
             </HBox>
 
-            <HBox spacing="10" alignment="center_left" >
-                <Label text="Not a user yet? " fx:id="signUpLabel" 
-                    style="-fx-font-size:12pt;" />
-                <Button text="Sign Up" fx:id="signUpButton"
-                    style="-fx-background-color:transparent;-fx-font-size:12pt;"
-                    onAction="#goToNewAccount" />
-            </HBox>
         </VBox>
     </center>
 </BorderPane>
