@@ -167,6 +167,14 @@ public class Catalog
 		return -1;
 	}
 	
+	//Select a random Product
+	public Product getRandomProduct()
+	{
+		int category = (int)(Math.random()*allProducts.length);
+		int item = (int)(Math.random()*allProducts[category].size());
+		return allProducts[category].get(item);
+	}
+	
 	//Return all the products in a given category
 	public ArrayList<Product> getCategoryProducts( int category )
 	{

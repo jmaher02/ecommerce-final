@@ -12,15 +12,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.*;
-import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class ECommerceController 
-{
-	public static final int WIDTH = 600;
-	public static final int HEIGHT = 600;
-	
+{	
 	//Models
 	private Product featured;
 	private int featCategory;
@@ -44,7 +39,7 @@ public class ECommerceController
 	{		
 		//Update Label Text Colors
 		title.setTextFill(ECommerceLaunch.MAIN_LIGHT);
-		productName.setTextFill(ECommerceLaunch.ACCENT_1_DARK);
+		productName.setTextFill(ECommerceLaunch.MAIN_LIGHT);
 		categoryTitle.setTextFill(ECommerceLaunch.ACCENT_1_DARK);
 		
 		//Set the Sign In / Account Button
@@ -59,11 +54,15 @@ public class ECommerceController
 				}} );
 		}
 		
+		//Get data for a random featured product
+		setFeatureProduct();
+		
 		//Create hover style
 		ECommerceLaunch.setButtonHover(homeButton, 3);
 		ECommerceLaunch.setButtonHover(accountButton,0);
 		ECommerceLaunch.setButtonHover(cartButton,0);
 		ECommerceLaunch.setButtonHover(categoryButton, 4);
+		ECommerceLaunch.setButtonHover(productButton, 1);
 	}
 	
 	@FXML void userSignIn( ActionEvent event) throws IOException
@@ -110,11 +109,23 @@ public class ECommerceController
 		window.setScene(categoryScene);
 		window.show();
 	}
-	
+
 	@FXML
-	public void viewCart( ActionEvent event )
+	public void viewCart( ActionEvent event ) throws IOException
 	{
-		System.out.println("View Cart");
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("fxml_cart_page.fxml"));
+		Parent cartScreen = loader.load();
+		Scene cartScene = new Scene(cartScreen, ECommerceLaunch.WIDTH, ECommerceLaunch.HEIGHT);
+		
+		//Pass existing cart data
+		CartController control = loader.getController();
+		control.initializeTable( );
+		
+		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+		
+		window.setScene(cartScene);
+		window.show();
 	}
 
 	@FXML
@@ -136,17 +147,20 @@ public class ECommerceController
 	}
 
 	
-	public void setFeatureProduct(Product product)
+	public void setFeatureProduct( )
 	{
-		featured = product;
-		//featCategory = 
+		featured = ECommerceLaunch.catalog.getRandomProduct();
+		featCategory = ECommerceLaunch.catalog.findProductCategory(featured);
 		
 		//Set product text details
-		productName.setText(product.getName());
-		productPrice.setText(product.printPrice());		
+		productName.setText(featured.getFeaturedTitle(30));
+		productPrice.setText(featured.printPrice());		
 
 		//Set image
-		productImage.setImage(new Image( product.showFeaturedPicture() ));
+		productImage.setImage(new Image( featured.showFeaturedPicture() ));
+		productImage.setFitHeight(100);
+		productImage.setFitWidth(100);
+		productImage.setPreserveRatio(true);
 	}
 	
 }

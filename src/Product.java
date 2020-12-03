@@ -47,6 +47,20 @@ public abstract class Product
 		return productName;
 	}
 	
+	public String getFeaturedTitle(int formatLen)
+	{
+		if(productName.length() < formatLen)
+		{
+			return productName;
+		}
+		else
+		{
+			String name = productName.substring(0,formatLen-3);
+			
+			return name + "...";
+		}
+	}
+	
 	public double getPrice()
 	{
 		return price;
