@@ -1,14 +1,20 @@
-/** Controller class to manage the Product page
+/** Controller class to manage the Home page
  * 
  * @author Jillian Maher
  */
 
+import java.io.IOException;
+
 import javafx.event.*;
 import javafx.fxml.*;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 
 public class ECommerceController 
 {
@@ -16,59 +22,93 @@ public class ECommerceController
 	public static final int HEIGHT = 600;
 	
 	//Models
-	private Catalog catalog;
+	private Product featured;
+	private int featCategory;
 	
 	//Nodes
 	@FXML private Label title;
 	@FXML private Label productName;
 	@FXML private Label productPrice;
-	@FXML private Label productID;
-	@FXML private Label productDetails;
-	@FXML private TextField quantity;
-	
-	@FXML private Button addToCart;
-	@FXML private Button backButton;
+	@FXML private Label categoryTitle;
+
+	@FXML private Button homeButton;
 	@FXML private Button accountButton;
 	@FXML private Button cartButton;
-	//Button styling
-    private static final String IDLE_BUTTON_STYLE = "-fx-background-color: #B0C485";
-    private static final String HOVERED_BUTTON_STYLE = "-fx-background-color: #EBEFCC;";
-
-    //----FOR TESTING PRODUCTS  ---//
-    private int index = 0;
+	@FXML private Button productButton;
+	@FXML private Button categoryButton;
 	
 	@FXML private ImageView productImage;
 	
 	@FXML
 	public void initialize()
-	{
-		catalog = new Catalog();
-		
+	{		
 		//Update Label Text Colors
-		title.setTextFill(Color.web("FFFAEE"));
-		productName.setTextFill(Color.web("#689892"));
-		productDetails.setTextFill(Color.web("#8FB4A8"));
-		productID.setTextFill(Color.web("#8FB4A8"));
-				
-		//Set default image
-		productImage.setImage(new Image("images/defaultProduct.png"));
+		title.setTextFill(ECommerceLaunch.MAIN_LIGHT);
+		productName.setTextFill(ECommerceLaunch.ACCENT_1_DARK);
+		categoryTitle.setTextFill(ECommerceLaunch.ACCENT_1_DARK);
+		
+		//Set the Sign In / Account Button
+		if(AccountController.user != null)
+		{
+			accountButton.setText("ACCOUNT");
+			accountButton.setOnAction( e -> {  
+				try {
+					getAccount(e);
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}} );
+		}
 		
 		//Create hover style
-		setButtonHover(backButton);
-		setButtonHover(accountButton);
-		setButtonHover(addToCart);
-		setButtonHover(cartButton);
+		ECommerceLaunch.setButtonHover(homeButton, 3);
+		ECommerceLaunch.setButtonHover(accountButton,0);
+		ECommerceLaunch.setButtonHover(cartButton,0);
+		ECommerceLaunch.setButtonHover(categoryButton, 4);
+	}
+	
+	@FXML void userSignIn( ActionEvent event) throws IOException
+	{
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("fxml_signin_page.fxml"));
+		Parent signInScreen = loader.load();
+		Scene signInScene = new Scene(signInScreen, ECommerceLaunch.WIDTH, ECommerceLaunch.HEIGHT);
+		
+		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+		
+		window.setScene(signInScene);
+		window.show();
 	}
 	
 	@FXML
-	public void backToCategory( ActionEvent event)
+	public void getAccount(ActionEvent event) throws IOException
 	{
-		System.out.println("GO BACK");
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("fxml_account_page.fxml"));
+		Parent acctScreen = loader.load();
+		Scene acctScene = new Scene(acctScreen, ECommerceLaunch.WIDTH, ECommerceLaunch.HEIGHT);
+
+		//Pass existing cart data
+		AccountController control = loader.getController();
+		control.initializeTable( );
+		
+		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+		
+		window.setScene(acctScene);
+		window.show();
 	}
 	
-	@FXML void userSignIn( ActionEvent event)
+	@FXML
+	public void goToAllCategories( ActionEvent event) throws IOException
 	{
-		System.out.println("ACCOUNT SCREEN");
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("fxml_category_page.fxml"));
+		Parent categoryScreen = loader.load();
+		Scene categoryScene = new Scene(categoryScreen, ECommerceLaunch.WIDTH, ECommerceLaunch.HEIGHT);
+				
+		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+		
+		window.setScene(categoryScene);
+		window.show();
 	}
 	
 	@FXML
@@ -78,27 +118,35 @@ public class ECommerceController
 	}
 
 	@FXML
-	public void updateCart(ActionEvent event)
+	public void viewProduct(ActionEvent event) throws IOException
 	{		
-		System.out.println("Pressed Button");
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("fxml_product_page.fxml"));
+		Parent productScreen = loader.load();
+		Scene productScene = new Scene(productScreen,  ECommerceLaunch.WIDTH, ECommerceLaunch.HEIGHT);
+		
+		//Pass Product data to controller
+		ProductController control = loader.getController();
+		control.setProduct(featured, featCategory);
+		
+		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+		
+		window.setScene(productScene);
+		window.show();
 	}
 
-	//Create transitions for hovering on and off a button
-	public void setButtonHover( Button button )
-	{
-		button.setOnMouseEntered(e -> button.setStyle(HOVERED_BUTTON_STYLE));
-        button.setOnMouseExited(e -> button.setStyle(IDLE_BUTTON_STYLE));
-	}
 	
-	public void setProductScreen(Product product)
+	public void setFeatureProduct(Product product)
 	{
-		//Testing adding product details
-		productName.setText(product.getName());
-		productPrice.setText(product.printPrice());
-		productID.setText(product.getItemNumber() + "");
-		productDetails.setText(product.displayCharacteristics());
-		index++;
+		featured = product;
+		//featCategory = 
 		
+		//Set product text details
+		productName.setText(product.getName());
+		productPrice.setText(product.printPrice());		
+
+		//Set image
+		productImage.setImage(new Image( product.showFeaturedPicture() ));
 	}
 	
 }

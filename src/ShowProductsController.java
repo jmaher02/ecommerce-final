@@ -29,7 +29,6 @@ public class ShowProductsController
 	@FXML private Button backButton;
 	@FXML private Button accountButton;
 	@FXML private Button cartButton;
-	
 
 	@FXML private Button itemOneButton;
 	@FXML private Button itemTwoButton;
@@ -127,7 +126,7 @@ public class ShowProductsController
 			
 			//Pass Product data to controller
 			ProductController control = loader.getController();
-			control.setProduct(catalog, items.get(item), category);
+			control.setProduct(items.get(item), category);
 			
 			Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
 			

@@ -54,7 +54,7 @@ public class SignInController
 	public void backToHome( ActionEvent event ) throws IOException
 	{
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource("fxml_category_page.fxml"));
+		loader.setLocation(getClass().getResource("fxml_homepage.fxml"));
 		Parent categoryScreen = loader.load();
 		Scene categoryScene = new Scene(categoryScreen, ECommerceLaunch.WIDTH, ECommerceLaunch.HEIGHT);
 		

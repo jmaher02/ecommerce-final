@@ -39,9 +39,7 @@ public class ProductController
 	
 	@FXML
 	public void initialize()
-	{
-		//catalog = new Catalog();
-		
+	{		
 		//Update Label Text Colors
 		title.setTextFill(ECommerceLaunch.MAIN_LIGHT);
 		productName.setTextFill(ECommerceLaunch.ACCENT_1_DARK);
@@ -68,9 +66,9 @@ public class ProductController
 	}
 	
 	//Initialize the product to be displayed
-	public void setProduct(Catalog saveCatalog, Product initProduct, int saveCategory)
+	public void setProduct(Product initProduct, int saveCategory)
 	{
-		catalog = saveCatalog;
+		catalog = ECommerceLaunch.catalog;
 		product = initProduct;
 		category = saveCategory;
 		
@@ -79,7 +77,7 @@ public class ProductController
 		productID.setText("Item #" + product.getItemNumber());
 		productDetails.setText(product.displayCharacteristics());
 		
-		//Set default image
+		//Set image
 		productImage.setImage(new Image( product.showFeaturedPicture() ));
 	}
 	

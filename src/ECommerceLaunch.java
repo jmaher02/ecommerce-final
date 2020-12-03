@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.paint.Color;
@@ -46,26 +47,33 @@ public class ECommerceLaunch extends Application
     
     //List of all Users
     private static ArrayList<User> allUsers = new ArrayList<User>( );
+    
+    //Create the catalog
+    public static Catalog catalog = new Catalog();
 
 	@Override
 	public void start( Stage stage ) 
 	{
 		try 
 	    {
-		  //Some initializing
-		  Catalog catalog = new Catalog();
 		  CartController.initializeCart();
 		  
 		  setUserAccounts();
-		  //TESTING AccountController.initializeAccount(allUsers.get(0));
 			
-	      URL url = getClass( ).getResource( "fxml_category_page.fxml" );
-	      BorderPane root = FXMLLoader.load( url );
-	      Scene scene = new Scene( root, WIDTH, HEIGHT );
+	      URL url = getClass( ).getResource( "fxml_homepage.fxml" );
+	      FXMLLoader loader = new FXMLLoader();
+	      loader.setLocation(url);
+	      Parent homeScreen = loader.load( );
+	      Scene scene = new Scene( homeScreen, WIDTH, HEIGHT );
+	      	      
 	      stage.setTitle( "Maher Merchandise" );
 	      stage.setScene( scene ); 
 	      stage.show( );
 	    }
+		catch(IOException e)
+		{
+			e.printStackTrace();
+		}
 	    catch( Exception e )
 	    {
 	      e.printStackTrace( ); 
@@ -206,32 +214,32 @@ public class ECommerceLaunch extends Application
 	//Create transitions for hovering on and off a button
 	public static void setButtonHover( Button button, int color )
 	{
-		if(color == 0)
+		if(color == 0)  //Title Bar Active Button
 		{
 			button.setOnMouseEntered(e -> button.setStyle(HOVERED_BUTTON_SAGE));
 	        button.setOnMouseExited(e -> button.setStyle(IDLE_BUTTON_SAGE));
 		}
-		else if (color == 1)
+		else if (color == 1)  //Action Button Active
 		{
 			button.setStyle(IDLE_BUTTON_TEAL);
 			button.setOnMouseEntered(e -> button.setStyle(HOVERED_BUTTON_TEAL));
 	        button.setOnMouseExited(e -> button.setStyle(IDLE_BUTTON_TEAL));
 		}
-		else if (color == 2)
+		else if (color == 2)   //Action Button Disabled
 		{
 			//show button as disabled
 			button.setStyle(HOVERED_BUTTON_TEAL);
 			button.setOnMouseEntered(e -> button.setStyle(HOVERED_BUTTON_TEAL));
 	        button.setOnMouseExited(e -> button.setStyle(HOVERED_BUTTON_TEAL));
 		}
-		else if (color == 3)
+		else if (color == 3)   //Title Bar Button Disabled
 		{
 			//show button as disabled
 			button.setStyle(HOVERED_BUTTON_SAGE);
 			button.setOnMouseEntered(e -> button.setStyle(HOVERED_BUTTON_SAGE));
 	        button.setOnMouseExited(e -> button.setStyle(HOVERED_BUTTON_SAGE));
 		}
-		else if ( color == 4)
+		else if ( color == 4)    //Transparent Button, Text Button
 		{
 			button.setTextFill(ACCENT_1_DARK);
 			button.setOnMouseEntered(e -> button.setTextFill(ACCENT_1_LIGHT));

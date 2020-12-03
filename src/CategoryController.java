@@ -36,7 +36,7 @@ public class CategoryController
 	@FXML
 	public void initialize()
 	{
-		catalog = new Catalog();
+		catalog = ECommerceLaunch.catalog;
 		
 		//Update Label Text Colors
 		title.setTextFill(ECommerceLaunch.MAIN_LIGHT);
@@ -128,9 +128,17 @@ public class CategoryController
 	}
 
 	@FXML
-	public void backToHomepage( ActionEvent event)
+	public void backToHomepage( ActionEvent event ) throws IOException
 	{
-		System.out.println("GO BACK");
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("fxml_homepage.fxml"));
+		Parent categoryScreen = loader.load();
+		Scene categoryScene = new Scene(categoryScreen, ECommerceLaunch.WIDTH, ECommerceLaunch.HEIGHT);
+		
+		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+		
+		window.setScene(categoryScene);
+		window.show();
 	}
 
 	@FXML

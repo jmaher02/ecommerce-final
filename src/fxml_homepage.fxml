@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<!-- COLOR PALETTE -->
+<!--
+    Purple == mediumorchid ==   #BA55D3 ==  rgb(186,85,211)
+    White  == floralwhite  ==   #FFFAEE ==  rgb(255,250,238)
+    Teal1  == desaturatedcyan ==#689892 ==  rgb(104,152,146)
+    Teal2  == cadetgrey    ==   #8FB4A8 ==  rgb(143,180,168)
+    Sage2  == dirtywhite   ==   #EBEFCC ==  rgb(235,239,204)
+    Sage1  == sage         ==   #B0C485 ==  rgb(176,196,133)
+-->
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" 
+      fx:controller="ECommerceController">
+    <top>
+        <HBox spacing="10" alignment="center" fx:id="titlePane"
+              style="-fx-background-color:mediumorchid;-fx-padding:8">
+
+            <!-- BACK Button in top left -->
+            <Button text="HOME" fx:id="homeButton"
+                style="-fx-background-color: #EBEFCC;" />
+            <!-- STORE TITLE in center -->
+            <Label text="Maher Merchandise" fx:id="title"
+                   style="-fx-font-size:20pt;-fx-font-weight:bold;" />
+            <!-- ACCOUNT and CART button in top right-->
+            <Button text="SIGN IN" fx:id="accountButton"
+                style="-fx-background-color: #B0C485;"
+                onAction="#userSignIn" />
+            <Button text="VIEW CART" fx:id="cartButton"
+                style="-fx-background-color: #B0C485;"
+                onAction="#viewCart" />
+
+        </HBox>
+    </top>
+    <left>
+        <!-- Featured Product Section-->
+        <VBox spacing="10" alignment="center_left"
+            style="-fx-background-color:floralwhite;-fx-padding:20" >
+            <Label text="FEATURED PRODUCT" fx:id="featureTitle" 
+                    style="-fx-font-size:14pt;"/>
+            <Label text="Product name" fx:id="productName" 
+                    style="-fx-font-size:14pt;"/>
+            
+            <ImageView fx:id="productImage">
+            </ImageView>
+
+            <Label text="0.00" fx:id="productPrice" 
+                    style="-fx-font-size:12pt;-fx-font-weight:bold;"/>
+            
+            <Button text="VIEW PRODUCT" fx:id="productButton"
+                    style="-fx-background-color: #689892;"
+                    onAction="#viewProduct" />
+        </VBox>
+    </left>
+    <center>
+        <!-- Go to categories -->
+        <VBox spacing="10" alignment="center"
+            style="-fx-background-color:floralwhite;-fx-padding:8" >
+            <Label text="Shop Store Products" fx:id="categoryTitle"
+                   style="-fx-font-size:20pt;-fx-font-weight:bold;" />
+            <HBox spacing="10" alignment="center" style="-fx-padding:5;" >
+                <Label text="Click here to " fx:id="signUpLabel" 
+                    style="-fx-font-size:12pt;" />
+                <Button text="See Categories" fx:id="categoryButton"
+                    style="-fx-background-color:transparent;-fx-font-size:12pt;"
+                    onAction="#goToAllCategories" />
+            </HBox>
+        </VBox>
+    </center>
+    <right>
+        <!-- Sign In / Sign Up / Visit Account Cart -->
+    </right>
+</BorderPane>

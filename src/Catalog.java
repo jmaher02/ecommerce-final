@@ -152,6 +152,21 @@ public class Catalog
 		return null;
 	}
 	
+	//Search the catalog to locate the category of a given product
+	public int findProductCategory(Product product)
+	{
+		for(int category = 0; category < allProducts.length; category++)
+		{
+			for(Product checkProd: allProducts[category])
+			{
+				if(checkProd.getItemNumber() == product.getItemNumber())
+					return category;
+			}
+		}
+		
+		return -1;
+	}
+	
 	//Return all the products in a given category
 	public ArrayList<Product> getCategoryProducts( int category )
 	{
