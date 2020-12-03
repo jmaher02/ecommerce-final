@@ -5,7 +5,6 @@
 
 import java.io.IOException;
 import java.text.DecimalFormat;
-import java.util.List;
 import javafx.collections.*;
 import javafx.event.*;
 import javafx.fxml.*;
@@ -16,7 +15,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.scene.image.*;
 import javafx.stage.Stage;
 import javafx.util.converter.IntegerStringConverter;
 

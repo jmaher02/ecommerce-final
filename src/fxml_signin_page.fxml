@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<!-- COLOR PALETTE -->
+<!--
+    Purple == mediumorchid ==   #BA55D3 ==  rgb(186,85,211)
+    White  == floralwhite  ==   #FFFAEE ==  rgb(255,250,238)
+    Teal1  == desaturatedcyan ==#689892 ==  rgb(104,152,146)
+    Teal2  == cadetgrey    ==   #8FB4A8 ==  rgb(143,180,168)
+    Sage2  == dirtywhite   ==   #EBEFCC ==  rgb(235,239,204)
+    Sage1  == sage         ==   #B0C485 ==  rgb(176,196,133)
+-->
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" 
+      fx:controller="SignInController">
+    <top>
+        <HBox spacing="10" alignment="center" fx:id="titlePane"
+              style="-fx-background-color:mediumorchid;-fx-padding:8">
+
+            <!-- BACK Button in top left -->
+            <Button text="HOME" fx:id="backButton"
+                style="-fx-background-color: #B0C485;"
+                onAction="#backToHome" />
+            <!-- STORE TITLE in center -->
+            <Label text="Maher Merchandise" fx:id="title"
+                   style="-fx-font-size:20pt;-fx-font-weight:bold;" />
+            <!-- ACCOUNT and CART button in top right-->
+            <Button text="SIGN IN" fx:id="accountButton"
+                style="-fx-background-color: #B0C485;" />
+            <Button text="VIEW CART" fx:id="cartButton"
+                style="-fx-background-color: #B0C485;"
+                onAction="#viewCart" />
+
+        </HBox>
+    </top>
+    <center>
+        <VBox spacing="10" alignment="center_left" 
+                style="-fx-background-color:floralwhite;-fx-padding:100;"  >
+            <!-- Sign in Form-->
+            <Label text="Please Sign In" fx:id="signInTitle" alignment="center"
+                style="-fx-font-size:16pt;-fx-font-weight:bold;" />
+            <Label text="Username" fx:id="userNameTitle"
+                style="-fx-font-size:12pt;" />
+            <TextField fx:id="userNameInput" style="-fx-font-size:12pt;" />
+            <Label text="Password" fx:id="passwordTitle"
+                style="-fx-font-size:12pt;" />
+            <TextField fx:id="passwordInput" style="-fx-font-size:12pt;" /> 
+
+            <HBox spacing="10" alignment="center_left">
+                <Button text="SIGN IN" fx:id="submitSignIn"
+                    style="-fx-background-color:#689892;"
+                    onAction="#findUserAccount" />
+                <Label text="" fx:id="notificationLabel" 
+                    style="-fx-font-size:9pt;" />
+            </HBox>
+        </VBox>
+    </center>
+</BorderPane>

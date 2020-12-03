@@ -89,7 +89,7 @@ public class AccountController
 	    
 	    //Create hover style
   		ECommerceLaunch.setButtonHover(backButton, 0);
-  		ECommerceLaunch.setButtonHover(accountButton, 0);
+  		ECommerceLaunch.setButtonHover(accountButton, 3);
   		ECommerceLaunch.setButtonHover(cartButton, 0);
   		ECommerceLaunch.setButtonHover(updatePasswordButton, 1);
   		ECommerceLaunch.setButtonHover(setCartButton, 1);  		
@@ -99,6 +99,21 @@ public class AccountController
 	public static void initializeAccount( User setUser )
 	{
 		user = setUser;
+	}
+	
+	//Save the Cart for this User
+	// returns false if there is no user
+	public static boolean saveCart( ObservableList<CartProduct> saveCart)
+	{
+		if(user==null)
+		{
+			return false;
+		}
+		else
+		{
+			user.setCart(saveCart);
+			return true;
+		}
 	}
 	
 	//Store data into the table

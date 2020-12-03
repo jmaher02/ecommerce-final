@@ -45,7 +45,7 @@ public class ECommerceLaunch extends Application
     public static final String HOVERED_BUTTON_TEAL = "-fx-background-color: " + TEAL_LIGHT;
     
     //List of all Users
-    public static ArrayList<User> allUsers = new ArrayList<User>( );
+    private static ArrayList<User> allUsers = new ArrayList<User>( );
 
 	@Override
 	public void start( Stage stage ) 
@@ -56,10 +56,10 @@ public class ECommerceLaunch extends Application
 		  Catalog catalog = new Catalog();
 		  CartController.initializeCart();
 		  
-//		  getUserAccounts();
-//		  AccountController.initializeAccount(allUsers.get(0));
+		  setUserAccounts();
+		  //TESTING AccountController.initializeAccount(allUsers.get(0));
 			
-	      URL url = getClass( ).getResource( "fxml_Category_page.fxml" );
+	      URL url = getClass( ).getResource( "fxml_signin_page.fxml" );
 	      BorderPane root = FXMLLoader.load( url );
 	      Scene scene = new Scene( root, WIDTH, HEIGHT );
 	      stage.setTitle( "Maher Merchandise" );
@@ -73,7 +73,7 @@ public class ECommerceLaunch extends Application
 	}
 	
 	//Read in user Accounts
-	public static void getUserAccounts( )
+	private static void setUserAccounts( )
 	{
 		try
 	    {
@@ -105,6 +105,7 @@ public class ECommerceLaunch extends Application
 	      finally
 	      {
 	        System.out.println( "Closing file" );
+	        System.out.println( "" + allUsers.size() + " users.");
 	        ois.close( );
 	      }
 	    } // end outer try block
@@ -118,6 +119,12 @@ public class ECommerceLaunch extends Application
 	    {
 	      ioe.printStackTrace( );
 	    }
+	}
+	
+	//Access the users in other classes
+	public static ArrayList<User> getAllUsers()
+	{
+		return (ArrayList<User>)allUsers.clone();
 	}
 	
 	//Create transitions for hovering on and off a button
@@ -140,6 +147,13 @@ public class ECommerceLaunch extends Application
 			button.setStyle(HOVERED_BUTTON_TEAL);
 			button.setOnMouseEntered(e -> button.setStyle(HOVERED_BUTTON_TEAL));
 	        button.setOnMouseExited(e -> button.setStyle(HOVERED_BUTTON_TEAL));
+		}
+		else if (color == 3)
+		{
+			//show button as disabled
+			button.setStyle(HOVERED_BUTTON_SAGE);
+			button.setOnMouseEntered(e -> button.setStyle(HOVERED_BUTTON_SAGE));
+	        button.setOnMouseExited(e -> button.setStyle(HOVERED_BUTTON_SAGE));
 		}
 	}
 	
