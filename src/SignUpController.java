@@ -89,7 +89,7 @@ public class SignUpController
 		window.show();
 	}
 	
-	public void setUserAccount(ActionEvent event)
+	public void setUserAccount(ActionEvent event) throws IOException
 	{
 		boolean found = false;
 		ArrayList<User> allUsers = ECommerceLaunch.getAllUsers();
@@ -115,12 +115,14 @@ public class SignUpController
 				ECommerceLaunch.saveUserAccount(acct);
 				notificationLabel.setTextFill(ECommerceLaunch.ACCENT_2_DARK);
 				notificationLabel.setText("Thank you! "  );	
+				
+				getAccount(event);
 
-				userNameInput.setText("");
-				firstNameInput.setText("");
-				lastNameInput.setText("");
-				emailInput.setText("");
-				passwordInput.setText("");
+//				userNameInput.setText("");
+//				firstNameInput.setText("");
+//				lastNameInput.setText("");
+//				emailInput.setText("");
+//				passwordInput.setText("");
 			}
 			else
 			{
@@ -129,7 +131,23 @@ public class SignUpController
 				passwordInput.setText("");
 			}
 		}
+	}
+
+	@FXML
+	public void getAccount(ActionEvent event) throws IOException
+	{
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("fxml_account_page.fxml"));
+		Parent acctScreen = loader.load();
+		Scene acctScene = new Scene(acctScreen, ECommerceLaunch.WIDTH, ECommerceLaunch.HEIGHT);
+
+		//Pass existing cart data
+		AccountController control = loader.getController();
+		control.initializeTable( );
 		
+		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
 		
+		window.setScene(acctScene);
+		window.show();
 	}
 }

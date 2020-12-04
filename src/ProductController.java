@@ -78,7 +78,16 @@ public class ProductController
 		productDetails.setText(product.displayCharacteristics());
 		
 		//Set image
+		try {
 		productImage.setImage(new Image( product.showFeaturedPicture() ));
+		}
+		catch (IllegalArgumentException e)
+		{
+			productImage.setImage(new Image( "images/defaultProduct.png"));
+		}
+		productImage.setFitHeight(200);
+		productImage.setFitWidth(200);
+		productImage.setPreserveRatio(true);
 	}
 	
 	@FXML
@@ -161,11 +170,18 @@ public class ProductController
 		{
 			try {
 				int quantity = Integer.parseInt(quantityField.getText());
-				warning.setTextFill(ECommerceLaunch.ACCENT_2_DARK);
-				warning.setText("Your selection has been added");
 				
 				//Add item to Cart
-				CartController.addCartItem(product, quantity);
+				if(CartController.addCartItem(product, quantity))
+				{
+					warning.setTextFill(ECommerceLaunch.ACCENT_2_DARK);
+					warning.setText("Your quantity has been updated");
+				}
+				else
+				{
+					warning.setTextFill(ECommerceLaunch.ACCENT_2_DARK);
+					warning.setText("Your selection has been added");
+				}
 			}
 			catch (NumberFormatException e) {
 				warning.setTextFill(ECommerceLaunch.WARNING);

@@ -5,6 +5,9 @@
  */
 
 import java.text.DecimalFormat;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import javafx.beans.property.*;
 
@@ -70,6 +73,28 @@ public class CartProduct implements Serializable
 	public String printSubtotal()
 	{
 		return "$" + decFormat.format( getSubtotal() );
+	}
+	
+	private void writeObject(ObjectOutputStream out) throws IOException
+	{
+		out.writeObject(getProduct());
+		out.writeObject(getProductQty());
+	}
+	
+	private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException
+	{
+		product = (Product)in.readObject();
+		productQty = new SimpleIntegerProperty((int) in.readObject());
+		
+		productName = new SimpleStringProperty(product.getName());
+		price = product.getPrice();
+
+		//Prepare for formatted output
+		String pattern = "##0.00";
+		decFormat = new DecimalFormat(pattern);
+		
+		String printPrice = "$" + decFormat.format( getPrice() );
+		productPrice = new SimpleStringProperty(printPrice);
 	}
 	
 	public String toString()

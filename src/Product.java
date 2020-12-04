@@ -3,9 +3,10 @@
  *  Abstract class to organize the name, itemnumber, and price
  */
 
+import java.io.Serializable;
 import java.text.DecimalFormat;
 
-public abstract class Product 
+public abstract class Product implements Serializable
 {
 	private int itemNumber;
 	private double price;
@@ -30,7 +31,7 @@ public abstract class Product
 		itemNumber = num;				
 		price = itemPrice;
 		productName = name;
-		productPicture = picture;
+		productPicture = "images/"+ picture;
 		
 		//Prepare for formatted output
 		String pattern = "##0.00";

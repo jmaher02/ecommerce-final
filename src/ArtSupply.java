@@ -1,6 +1,7 @@
+import java.io.Serializable;
 import java.util.Scanner;
 
-public class ArtSupply extends Product 
+public class ArtSupply extends Product implements Serializable
 {
 	private String brand;
 	

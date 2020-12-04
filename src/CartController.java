@@ -82,13 +82,25 @@ public class CartController
 		userCart = FXCollections.observableArrayList();
 	}
 	
-	// Add a new Product to the Cart
-	public static void addCartItem(Product product, int quantity)
+	// Add a Product to the Cart. 
+	// If CartItem already exists, add to the existing quantity and return true
+	public static boolean addCartItem(Product product, int quantity)
 	{
-		CartProduct newItem = new CartProduct(product, quantity);
+		for(CartProduct items : userCart)
+		{
+			if(product.getName().equals(items.getProductName()) )
+			{
+				items.setQuantity( items.getProductQty() + quantity );
+				return true;
+			}
+		}
 		
+		CartProduct newItem = new CartProduct(product, quantity);
+				
 		userCart.add(newItem);
 		System.out.println(newItem);
+		
+		return false;
 	}
 	
 	// Add User's Cart to current cart
@@ -131,11 +143,36 @@ public class CartController
 	public void editQuantity(CellEditEvent<CartProduct, Integer> editedCell)
 	{
 		CartProduct itemSelected = cartTable.getSelectionModel().getSelectedItem();
-		itemSelected.setQuantity(Integer.parseInt(editedCell.getNewValue().toString()));
+		int newQuantity = -1;
+		try {
+			
+			newQuantity = Integer.parseInt(editedCell.getNewValue().toString());
+			
+		}
+		catch (NumberFormatException e) {
+			notificationLabel.setTextFill(ECommerceLaunch.WARNING);
+			notificationLabel.setText("Please enter a number");
+		}
 		
-		System.out.println(itemSelected);
-		
-		updateTotal();
+		if(newQuantity != -1)
+		{
+			if(newQuantity == 0)
+			{
+				userCart.remove(itemSelected);
+				updateTotal();
+	
+				notificationLabel.setTextFill(ECommerceLaunch.ACCENT_2_DARK);
+				notificationLabel.setText("Cart Updated, Item Removed");
+			}
+			else
+			{
+				itemSelected.setQuantity( newQuantity );
+				updateTotal();
+				
+				notificationLabel.setTextFill(ECommerceLaunch.ACCENT_2_DARK);
+				notificationLabel.setText("Cart Updated");
+			}
+		}
 	}
 	
 	@FXML

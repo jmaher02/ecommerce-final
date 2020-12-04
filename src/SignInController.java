@@ -82,7 +82,7 @@ public class SignInController
 		window.show();
 	}
 	
-	public void findUserAccount(ActionEvent event)
+	public void findUserAccount(ActionEvent event) throws IOException
 	{
 		boolean found = false;
 		ArrayList<User> allUsers = ECommerceLaunch.getAllUsers();
@@ -96,6 +96,7 @@ public class SignInController
 					notificationLabel.setText("Welcome back, "+ user.getName() + "!");
 					AccountController.initializeAccount(user);
 					found = true;
+					getAccount(event);
 					break;
 				}
 				else
@@ -128,6 +129,24 @@ public class SignInController
 		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
 		
 		window.setScene(signUpScene);
+		window.show();
+	}
+
+	@FXML
+	public void getAccount(ActionEvent event) throws IOException
+	{
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("fxml_account_page.fxml"));
+		Parent acctScreen = loader.load();
+		Scene acctScene = new Scene(acctScreen, ECommerceLaunch.WIDTH, ECommerceLaunch.HEIGHT);
+
+		//Pass existing cart data
+		AccountController control = loader.getController();
+		control.initializeTable( );
+		
+		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+		
+		window.setScene(acctScene);
 		window.show();
 	}
 }

@@ -220,7 +220,13 @@ public class ECommerceController
 		productPrice.setText(featured.printPrice());		
 
 		//Set image
+		try {
 		productImage.setImage(new Image( featured.showFeaturedPicture() ));
+		}
+		catch (IllegalArgumentException e)
+		{
+			productImage.setImage(new Image( "images/defaultProduct.png"));
+		}
 		productImage.setFitHeight(100);
 		productImage.setFitWidth(100);
 		productImage.setPreserveRatio(true);

@@ -164,7 +164,7 @@ public class ECommerceLaunch extends Application
 	}
 	
 	//Update user's saved Cart
-	public static void updateUserCart( User acct )
+	public static void updateUser( User acct )
 	{
 		//Locate old user account and replace cart (maybe redundant due to pass by reference ??
 		for(User user:allUsers)

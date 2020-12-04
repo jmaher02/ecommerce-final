@@ -42,6 +42,8 @@
             <!-- Page Title -->
             <Label text="Customer Cart" fx:id="cartTitle"
                 style="-fx-font-size:16pt;-fx-font-weight:bold;"/>
+            <Label text="To update any products, select the quantity and type a new quantity. Type 0 to remove the item." 
+                fx:id="cartDetails" style="-fx-font-size:9pt;" />
             <!-- Table Title -->
             <TableView fx:id="cartTable" prefHeight="400.0" prefWidth="400.0" >
             <columns>

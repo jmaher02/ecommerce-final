@@ -112,9 +112,7 @@ public class AccountController
 		else
 		{
 			user.setCart(saveCart);
-			System.out.println(saveCart.toString());
-			System.out.println("HERE======");
-			System.out.println(user.getUserCart().toString());
+			ECommerceLaunch.updateUser(user);
 			return true;
 		}
 	}
@@ -156,6 +154,8 @@ public class AccountController
 		
 		//Pass existing cart data
 		CartController.addUserCart(userCart);
+		CartController control = loader.getController();
+		control.initializeTable( );
 		
 		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
 		
@@ -200,13 +200,18 @@ public class AccountController
 	@FXML
 	public void updatePassword(ActionEvent event)
 	{
-		if(user != null && user.setPassword(oldPasswordInput.getText(), newPasswordInput.getText()))
+		if(!user.isValidPassword(newPasswordInput.getText()))
+		{
+			passwordWarning.setText("Provide a valid new password");
+		}
+		else if(user != null && user.setPassword(oldPasswordInput.getText(), newPasswordInput.getText()))
 		{
 			passwordWarning.setText("Password has been updated");
+			ECommerceLaunch.updateUser(user);
 		}
 		else
 		{
-			passwordWarning.setText("Password not updated, please enter correct password. ");
+			passwordWarning.setText("Password not updated, incorrect password. ");
 		}
 		
 		oldPasswordInput.setText("");

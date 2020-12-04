@@ -39,11 +39,6 @@ public class User implements Serializable
 		picFile = picture;
 	}
 	
-	public void setPassword( String pword )
-	{
-		password = pword;
-	}
-	
 	public void setEmail( String newEmail)
 	{
 		email = newEmail;
@@ -75,11 +70,13 @@ public class User implements Serializable
 	
 	public boolean correctPassword( String toCheck )
 	{
+		System.out.println(password + " == " + toCheck);
 		return password.equals(toCheck);
 	}
 	
 	public boolean setPassword( String toCheck, String newPassword)
 	{
+		System.out.println(password);
 		if(correctPassword(toCheck))
 		{
 			password = newPassword;

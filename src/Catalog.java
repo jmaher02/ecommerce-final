@@ -76,14 +76,15 @@ public class Catalog
 		        int itemNum = parse.nextInt();
 		        String name = parse.next();
 		        double price = parse.nextDouble();
+		        String pic = parse.next();
 		        String description = parse.next();
 		        switch(category) {
-		        case 0: list.add(new ArtSupply(itemNum, name, price, description)); break; 
-		        case 1: list.add(new CampingGear(itemNum, name, price, description)); break; 
-		        case 2: list.add(new Candy(itemNum, name, price, description)); break; 
-		        case 3: list.add(new Electronic(itemNum, name, price, description)); break; 
-		        case 4: list.add(new Toy(itemNum, name, price, description)); break; 
-		        case 5: list.add(new VideoGame(itemNum, name, price, description)); break; 
+		        case 0: list.add(new ArtSupply(itemNum, name, price, description, pic)); break; 
+		        case 1: list.add(new CampingGear(itemNum, name, price, description, pic)); break; 
+		        case 2: list.add(new Candy(itemNum, name, price, description, pic)); break; 
+		        case 3: list.add(new Electronic(itemNum, name, price, description, pic)); break; 
+		        case 4: list.add(new Toy(itemNum, name, price, description, pic)); break; 
+		        case 5: list.add(new VideoGame(itemNum, name, price, description, pic)); break; 
 		        }
 	        	
 	        }
