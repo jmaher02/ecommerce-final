@@ -60,7 +60,6 @@ public class ShowProductsController
 		}
 				
 		//Create hover style
-		ECommerceLaunch.setButtonHover(moreButton, 1);
 		ECommerceLaunch.setButtonHover(backButton, 0);
 		ECommerceLaunch.setButtonHover(accountButton, 0);
 		ECommerceLaunch.setButtonHover(cartButton, 0);
@@ -75,6 +74,15 @@ public class ShowProductsController
 		category = showCategory;
 		items = catalog.getCategoryProducts(category);
 
+		//Edit hover style for the MORE button
+		if(items.size() <= 6)
+		{
+			ECommerceLaunch.setButtonHover(moreButton, 2);  //Show disabled
+		}
+		else
+		{
+			ECommerceLaunch.setButtonHover(moreButton, 1);
+		}
 
 		categoryTitle.setText(catalog.getCategoryTitles()[category]);
 
