@@ -17,6 +17,9 @@ public class AdminUserAccounts
 		User admin = new User("Username", "Admin", "LstName", "email@email.com", "admin");
 		User test = new User("jillian.maher", "Jillian", "Maher", "jillian@maher.com", "FinalProject2020");
 		
+		//Also added user for testing Cart feature: 
+		//   Username: TestCart   password: TestCart1
+		
 		try
 		   {
 		    FileOutputStream fos = new FileOutputStream

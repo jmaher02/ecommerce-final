@@ -152,7 +152,7 @@ public class ShowProductsController
 		{
 			if((i+productpage)<items.size() && items.get(i+productpage) != null)
 			{
-				productButtons[i].setText(items.get(i+productpage).getName());
+				productButtons[i].setText(items.get(i+productpage).getFeaturedTitle(25));
 				ECommerceLaunch.setButtonHover(productButtons[i], 1);
 			}
 			else
@@ -172,10 +172,10 @@ public class ShowProductsController
 	}
 
 	@FXML
-	public void backToCategory( ActionEvent event) throws IOException
+	public void backToHomepage( ActionEvent event) throws IOException
 	{
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource("fxml_category_page.fxml"));
+		loader.setLocation(getClass().getResource("fxml_homepage.fxml"));
 		Parent categoryScreen = loader.load();
 		Scene categoryScene = new Scene(categoryScreen, ECommerceLaunch.WIDTH, ECommerceLaunch.HEIGHT);
 		

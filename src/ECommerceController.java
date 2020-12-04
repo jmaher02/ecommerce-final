@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 public class ECommerceController 
 {	
 	//Models
+	private Catalog catalog;
 	private Product featured;
 	private int featCategory;
 	
@@ -30,17 +31,35 @@ public class ECommerceController
 	@FXML private Button accountButton;
 	@FXML private Button cartButton;
 	@FXML private Button productButton;
-	@FXML private Button categoryButton;
+	
+	@FXML private Button artCategory;
+	@FXML private Button campCategory;
+	@FXML private Button candyCategory;
+	@FXML private Button elecCategory;
+	@FXML private Button toyCategory;
+	@FXML private Button gameCategory;
 	
 	@FXML private ImageView productImage;
 	
 	@FXML
 	public void initialize()
 	{		
+		catalog = ECommerceLaunch.catalog;
+		
 		//Update Label Text Colors
 		title.setTextFill(ECommerceLaunch.MAIN_LIGHT);
 		productName.setTextFill(ECommerceLaunch.MAIN_LIGHT);
 		categoryTitle.setTextFill(ECommerceLaunch.ACCENT_1_DARK);
+		
+		Button[] categories = {artCategory, campCategory, candyCategory, elecCategory, toyCategory, gameCategory};
+		//Set category images on buttons
+		for(int i = 0; i < 6; i++)
+		{
+			categories[i].setPrefSize(100, 100);
+			categories[i].setMaxSize(120, 120);
+			setButtonImage(categories[i], i);
+			ECommerceLaunch.setButtonHover(categories[i], 1);
+		}
 		
 		//Set the Sign In / Account Button
 		if(AccountController.user != null)
@@ -61,8 +80,66 @@ public class ECommerceController
 		ECommerceLaunch.setButtonHover(homeButton, 3);
 		ECommerceLaunch.setButtonHover(accountButton,0);
 		ECommerceLaunch.setButtonHover(cartButton,0);
-		ECommerceLaunch.setButtonHover(categoryButton, 4);
 		ECommerceLaunch.setButtonHover(productButton, 1);
+	}
+
+	@FXML void viewProducts( ActionEvent event ) throws IOException
+	{
+		int category = -1;
+		if(event.getSource() == artCategory)
+		{
+			category = 0;
+		}
+		else if(event.getSource() == campCategory)
+		{
+			category = 1;
+		}
+		else if(event.getSource() == candyCategory)
+		{
+			category = 2;
+		}
+		else if(event.getSource() == elecCategory)
+		{
+			category = 3;
+		}
+		else if(event.getSource() == toyCategory)
+		{
+			category = 4;
+		}
+		else if(event.getSource() == gameCategory)
+		{
+			category = 5;
+		}
+		else
+		{
+			category = -1;
+		}
+		
+		if(category != -1)
+		{
+			//Jump to new screen to show products for given cateogry
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(getClass().getResource("fxml_select_product.fxml"));
+			Parent categoryScreen = loader.load();
+			Scene categoryScene = new Scene(categoryScreen, ECommerceLaunch.WIDTH, ECommerceLaunch.HEIGHT);
+			
+			//Pass data to the Products Page to find the catalog items
+			ShowProductsController control = loader.getController();
+			control.initCategory(catalog, category);
+			
+			Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+			
+			window.setScene(categoryScene);
+			window.show();
+		}
+	}
+	
+	//Add images to the buttons
+	public void setButtonImage( Button button , int index)
+	{
+		ImageView view = new ImageView( new Image("images/" + catalog.getImageTitle(index)));
+		button.setGraphic(view);
+		button.setText("");
 	}
 	
 	@FXML void userSignIn( ActionEvent event) throws IOException
@@ -93,20 +170,6 @@ public class ECommerceController
 		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
 		
 		window.setScene(acctScene);
-		window.show();
-	}
-	
-	@FXML
-	public void goToAllCategories( ActionEvent event) throws IOException
-	{
-		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource("fxml_category_page.fxml"));
-		Parent categoryScreen = loader.load();
-		Scene categoryScene = new Scene(categoryScreen, ECommerceLaunch.WIDTH, ECommerceLaunch.HEIGHT);
-				
-		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-		
-		window.setScene(categoryScene);
 		window.show();
 	}
 

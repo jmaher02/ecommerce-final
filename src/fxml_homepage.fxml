@@ -56,17 +56,38 @@
         </VBox>
     </left>
     <center>
-        <!-- Go to categories -->
+        <!-- Split screen with three categories on top and three on bottom -->
         <VBox spacing="10" alignment="center"
-            style="-fx-background-color:floralwhite;-fx-padding:8" >
-            <Label text="Shop Store Products" fx:id="categoryTitle"
-                   style="-fx-font-size:20pt;-fx-font-weight:bold;" />
-            <HBox spacing="10" alignment="center" style="-fx-padding:5;" >
-                <Label text="Click here to " fx:id="signUpLabel" 
-                    style="-fx-font-size:12pt;" />
-                <Button text="See Categories" fx:id="categoryButton"
-                    style="-fx-background-color:transparent;-fx-font-size:12pt;"
-                    onAction="#goToAllCategories" />
+              style="-fx-background-color:floralwhite;-fx-padding:10">
+            <!-- Page Title -->
+            <Label text="Select a Category of Products" fx:id="categoryTitle"
+                    style="-fx-font-size:16pt;-fx-font-weight:bold;" />
+            
+            <!-- Top Row -->
+            <HBox spacing="10" alignment="center"
+              style="-fx-padding:5;">
+                <Button text="ART" fx:id="artCategory"
+                    style="-fx-background-color: #689892;"
+                    onAction="#viewProducts" /> 
+                <Button text="CAMPING" fx:id="campCategory"
+                    style="-fx-background-color: #689892;"
+                    onAction="#viewProducts" /> 
+                <Button text="CANDY" fx:id="candyCategory"
+                    style="-fx-background-color: #689892;"
+                    onAction="#viewProducts" /> 
+            </HBox>
+            <!-- Bottom Row -->
+            <HBox spacing="10" alignment="center"
+              style="-fx-padding:5;">
+                <Button text="ELECTRONICS" fx:id="elecCategory"
+                    style="-fx-background-color: #689892;"
+                    onAction="#viewProducts" /> 
+                <Button text="TOYS" fx:id="toyCategory"
+                    style="-fx-background-color: #689892;"
+                    onAction="#viewProducts" /> 
+                <Button text="VIDEO GAMES" fx:id="gameCategory"
+                    style="-fx-background-color: #689892;"
+                    onAction="#viewProducts" />
             </HBox>
         </VBox>
     </center>
