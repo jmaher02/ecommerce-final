@@ -44,7 +44,7 @@
                 style="-fx-font-size:16pt;-fx-font-weight:bold;"/>
 
             <!-- Split Page for image and Account Info-->
-            <HBox spacing="10" alignment="center_left">
+            <HBox spacing="10" alignment="center">
                 <!-- Image Section -->
                 <VBox spacing="10" alignment="center"
                     style="-fx-padding:8">
@@ -70,25 +70,32 @@
                         <Label text="" fx:id="emailLabel"
                             style="-fx-font-size:12pt;" />
                     </HBox>
-                    <Label text="Change password" fx:id="passwordTitle"
-                            style="-fx-font-size:12pt;-fx-font-weight:bold;" />
-                    <HBox spacing="5" alignment="center_left" 
-                            style="-fx-padding:5;" >
-                        <Label text="Old password" fx:id="oldPasswordLabel"
-                            style="-fx-font-size:10pt;;" />
-                        <TextField fx:id="oldPasswordInput" maxWidth="100" 
-                            style="-fx-font-size:10pt;"/>
-                        <Label text="New password" fx:id="newPasswordLabel"
-                            style="-fx-font-size:10pt;" />
-                        <TextField fx:id="newPasswordInput" maxWidth="100" 
-                            style="-fx-font-size:10pt;"/>
-                        <Button text="UPDATE" fx:id="updatePasswordButton"
-                            style="-fx-background-color: #689892;"
-                            onAction="#updatePassword" />
-                        <Label text="" fx:id="passwordWarning"
-                            style="-fx-font-size:10pt;" />
-                    </HBox>
                 </VBox> <!-- End Account Info Section -->
+                <VBox spacing="10" alignment="top_right"
+                        style="-fix-padding:8" >
+                    <Button text="SIGN OUT" fx:id="signOutButton"
+                            style="-fx-background-color:#689892;" 
+                            onAction="#userSignOut"/>
+                </VBox>
+            </HBox>
+            <!-- User updated password-->
+            <Label text="Change password" fx:id="passwordTitle" 
+                    style="-fx-font-size:12pt;-fx-font-weight:bold;" />
+            <HBox spacing="5" alignment="center_left" 
+                    style="-fx-padding:5;" >
+                <Label text="Old password" fx:id="oldPasswordLabel"
+                    style="-fx-font-size:10pt;;" />
+                <PasswordField fx:id="oldPasswordInput" maxWidth="100" 
+                    style="-fx-font-size:10pt;"/>
+                <Label text="New password" fx:id="newPasswordLabel"
+                    style="-fx-font-size:10pt;" />
+                <PasswordField fx:id="newPasswordInput" maxWidth="100" 
+                    style="-fx-font-size:10pt;"/>
+                <Button text="UPDATE" fx:id="updatePasswordButton"
+                    style="-fx-background-color: #689892;"
+                    onAction="#updatePassword" />
+                <Label text="" fx:id="passwordWarning"
+                    style="-fx-font-size:10pt;" />
             </HBox>
             <!-- Table Title -->
             <TableView fx:id="cartTable"  >

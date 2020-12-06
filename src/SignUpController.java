@@ -31,7 +31,7 @@ public class SignUpController
 	@FXML private TextField firstNameInput;
 	@FXML private TextField lastNameInput;
 	@FXML private TextField emailInput;
-	@FXML private TextField passwordInput;
+	@FXML private PasswordField passwordInput;
 
 	@FXML private Button backButton;
 	@FXML private Button accountButton;

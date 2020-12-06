@@ -42,6 +42,7 @@ public class AccountController
 	@FXML private Button backButton;
 	@FXML private Button accountButton;
 	@FXML private Button cartButton;
+	@FXML private Button signOutButton;
 	@FXML private Button updatePasswordButton;
 	@FXML private Button setCartButton;
 	
@@ -67,20 +68,29 @@ public class AccountController
 		totalTitle.setTextFill(ECommerceLaunch.ACCENT_1_LIGHT);
 		passwordWarning.setTextFill(ECommerceLaunch.WARNING);
 		
+		
 		//Access the user's info
 		if(user != null)
 		{
 			nameLabel.setText(user.getName());
 			emailLabel.setText(user.getEmail());
 			userCart = user.getUserCart();
+			//Set image
+			try {
+			userImage.setImage(new Image( user.showFeaturedPicture() ));
+			}
+			catch (IllegalArgumentException e)
+			{
+				userImage.setImage(new Image( "images/userIconDefault.png"));
+			}			
+			
+			//Update Total Label
+			updateTotal();
 		}
 		else
 		{
 			userCart = FXCollections.observableArrayList();
 		}
-		
-		//Update Total Label
-		updateTotal();
 		
 		//Size the columns
 		cartTable.getColumns().get(0).prefWidthProperty().bind(cartTable.widthProperty().multiply(0.5));  
@@ -91,6 +101,7 @@ public class AccountController
   		ECommerceLaunch.setButtonHover(backButton, 0);
   		ECommerceLaunch.setButtonHover(accountButton, 3);
   		ECommerceLaunch.setButtonHover(cartButton, 0);
+  		ECommerceLaunch.setButtonHover(signOutButton, 1);
   		ECommerceLaunch.setButtonHover(updatePasswordButton, 1);
   		ECommerceLaunch.setButtonHover(setCartButton, 1);  		
 	}
@@ -142,6 +153,23 @@ public class AccountController
 		DecimalFormat decFormat = new DecimalFormat(pattern);
 		
 		totalAmount.setText("$" + decFormat.format(total));
+	}
+	
+	//Remove user from the account page and initiate Sign In page
+	@FXML
+	public void userSignOut( ActionEvent event ) throws IOException
+	{
+		user = null;
+		
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("fxml_signin_page.fxml"));
+		Parent signInScreen = loader.load();
+		Scene signInScene = new Scene(signInScreen, ECommerceLaunch.WIDTH, ECommerceLaunch.HEIGHT);
+		
+		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+		
+		window.setScene(signInScene);
+		window.show();
 	}
 	
 	@FXML
@@ -200,7 +228,7 @@ public class AccountController
 	@FXML
 	public void updatePassword(ActionEvent event)
 	{
-		if(!user.isValidPassword(newPasswordInput.getText()))
+		if(!User.isValidPassword(newPasswordInput.getText()))
 		{
 			passwordWarning.setText("Provide a valid new password");
 		}

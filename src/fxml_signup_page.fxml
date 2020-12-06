@@ -58,8 +58,7 @@
             
             <Label text="Password" fx:id="passwordTitle"
                 style="-fx-font-size:12pt;" />
-            <TextField fx:id="passwordInput" style="-fx-font-size:12pt;" /> 
-            
+            <PasswordField fx:id="passwordInput" style="-fx-font-size:12pt;" /> 
             
             <HBox spacing="10" alignment="center_left">
                 <Button text="SIGN UP" fx:id="submitSignUp"

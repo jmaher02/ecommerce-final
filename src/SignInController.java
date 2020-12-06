@@ -11,7 +11,6 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.image.*;
 import javafx.stage.Stage;
 
 public class SignInController 
@@ -25,7 +24,7 @@ public class SignInController
 	@FXML private Label notificationLabel;
 	
 	@FXML private TextField userNameInput;
-	@FXML private TextField passwordInput;
+	@FXML private PasswordField passwordInput;
 
 	@FXML private Button backButton;
 	@FXML private Button accountButton;
