@@ -4,4 +4,4 @@
 703219;M&M Milk Chocolate  5 oz.;3.49;M_M Milk Chocolate  5 oz.jpg;5
 703237;M&M Milk Chocolate  16 oz.;7.99;M_M Milk Chocolate  32 oz.jpg;16
 703219;M&M Milk Chocolate  32 oz.;14.49;M_M Milk Chocolate  32 oz.jpg;32
-703759;100Grand Funsize  225 count;21.35;100Grand.jpg;35
+703759;100 Grand Funsize  225 count;21.35;100Grand.jpg;35

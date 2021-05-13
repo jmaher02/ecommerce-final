@@ -3,4 +3,4 @@
 209946;Wise Owl Outfitters Hammock;27.95;Wise Owl Outfitters Hammock.jpg;20.4,108"x54"
 209580;CAMPMAX Lightweight Cookware;18.99;camp stove.jpg;18.1,6.42"x6.3"x3.66"
 209098;AOTU Portable Camping Stove;13.97;Camping stove.jpg;2.75,2.6"x2.8"x1.3"
-209747;Portable Emergency Solar Hand Crank Radio;35.74;solar radio.jpg;16,7"x4.5"x3.5"
+209747;Portable Emergency Solar Hand-Crank Radio;35.74;solar radio.jpg;16,7"x4.5"x3.5"
