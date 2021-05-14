@@ -127,7 +127,7 @@ public class SignUpController
 			else
 			{
 				notificationLabel.setTextFill(ECommerceLaunch.WARNING);
-				notificationLabel.setText("Password must contain at least one uppercase, one lowercase, and one number"  );	
+				notificationLabel.setText("Password must be at least 8 characters and contain at least one uppercase, one lowercase, and one number"  );	
 				passwordInput.setText("");
 			}
 		}
